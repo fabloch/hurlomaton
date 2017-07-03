@@ -1,1 +1,3 @@
-cam_test/capture
+cam_test/images/capture/*.JPG
+cam_test/images/button/*.JPG
+.DS_Store
