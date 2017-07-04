@@ -6,7 +6,7 @@ from utils import now_string, path_to_images
 camera = PiCamera()
 
 camera.start_preview()
-sleep(4)
+sleep(3)
 camera.capture("{path}/capture/{now}.jpg".format(
     path=path_to_images(),
     now=now_string()))

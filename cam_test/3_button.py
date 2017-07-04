@@ -8,13 +8,13 @@ button = Button(17)
 camera = PiCamera()
 
 camera.start_preview()
+
 while True:
     try:
         button.wait_for_press()
-        sleep(2)
         camera.capture("{path}/button/{now}.jpg".format(
             path=path_to_images(),
             now=now_string()))
     except KeyboardInterrupt:
         camera.stop_preview()
-        break
+	break

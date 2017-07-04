@@ -1,7 +1,7 @@
 from datetime import datetime
 
-def now_string():
+def path_to_images():
     """
     Returns a path string
     """
-    return "/dev/huuurlomaton/cam_test/images/capture/"
+    return "/home/pi/dev/huuurlomaton/cam_test/images"
