@@ -5,3 +5,5 @@ cam_test/images/button/*.JPG
 cam_test/images/button/*.jpg
 
 .DS_Store
+
+*.swp

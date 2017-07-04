@@ -11,10 +11,17 @@ camera.start_preview()
 
 while True:
     try:
-        button.wait_for_press()
-        camera.capture("{path}/button/{now}.jpg".format(
-            path=path_to_images(),
-            now=now_string()))
+        while True:
+            if button.is_pressed:
+                pass
+            else:
+                camera.capture("{path}/button/{now}.jpg".format(
+                    path=path_to_images(),
+                    now=now_string()))
+                sleep(4)
+                break
+        # break
     except KeyboardInterrupt:
         camera.stop_preview()
-	break
+        break
+
