@@ -7,7 +7,7 @@ from utils import now_string, path_to_images
 button = Button(17)
 camera = PiCamera()
 
-camera.start_preview()
+# 44amera.start_preview()
 
 while True:
     try:
@@ -18,7 +18,7 @@ while True:
                 camera.capture("{path}/button/{now}.jpg".format(
                     path=path_to_images(),
                     now=now_string()))
-                sleep(4)
+                sleep(30)
                 break
         # break
     except KeyboardInterrupt:
