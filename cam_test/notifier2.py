@@ -11,6 +11,9 @@ class EventHandler(pyinotify.ProcessEvent):
     def process_IN_CREATE(self, event):
         print("Creating:", event.pathname)
 
+    def process_IN_MODIFY(self, event):
+        print("Modified:", event.pathname)
+
     def process_IN_CLOSE_NOWRITE(self, event):
         print("Has written: ", event.pathname)
 
