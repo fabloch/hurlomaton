@@ -4,8 +4,6 @@ cam_test/images/capture/*.jpg
 cam_test/images/button/*.JPG
 cam_test/images/button/*.jpg
 
-upload_test/*.jpg
-
 .DS_Store
 
 *.swp
