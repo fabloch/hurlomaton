@@ -7,3 +7,6 @@ cam_test/images/button/*.jpg
 .DS_Store
 
 *.swp
+
+interface/node_modules
+interface/public/client/static/img/photos
