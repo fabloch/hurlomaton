@@ -8,5 +8,5 @@ cam_test/images/button/*.jpg
 
 *.swp
 
-interface/node_modules
+node_modules
 interface/public/client/static/img/photos
