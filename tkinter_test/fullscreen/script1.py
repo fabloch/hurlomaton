@@ -12,6 +12,7 @@ class Fullscreen_Window:
         self.state = False
         self.root.bind("<x>", self.toggle_fullscreen)
         self.root.bind("<Escape>", self.end_fullscreen)
+        self.root.config(cursor="none")
 
     def toggle_fullscreen(self, event=None):
         self.state = not self.state  # Just toggling the boolean
