@@ -15,11 +15,10 @@ Main Hurlomaton python program
 from gui import GUIController
 from snd_switch import SoundSwitch
 
-GUI = GUIController()
-GUI.mainloop()
+# GUI = GUIController()
+# GUI.mainloop()
 
 SOUND_SWITCH = SoundSwitch()
 
 while True:
-    if SOUND_SWITCH.run_snd_test:
-        GUI.show_frame_success()
+    print(sound_switch.run_snd_test())

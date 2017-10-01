@@ -1,20 +1,21 @@
-from time import sleep
+from time import sleep, time
 from RPi import GPIO
 
 class SoundSwitch(object):
     def __init__(self):
         self.sound_level_high = False
+        self.GPIO_SND_IN = 2
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.add_event_detect(16, GPIO.BOTH)
-        GPIO.add_event_callback(16, self.set_sound_level_high)
+        GPIO.setup(self.GPIO_SND_IN, GPIO.IN)
+        GPIO.add_event_detect(self.GPIO_SND_IN, GPIO.BOTH)
+        GPIO.add_event_callback(self.GPIO_SND_IN, self.set_sound_level_high)
 
     def set_sound_level_high(self):
         """
         Sets sound_level_high to True or False
         by listening GPIO port 16
         """
-        self.sound_level_high = GPIO.input(16)
+        self.sound_level_high = GPIO.input(self.GPIO_SND_IN)
 
     def run_snd_test(self):
         """
@@ -22,9 +23,11 @@ class SoundSwitch(object):
         that the sound level is still high
         and returns True. Else returns False
         """
+        print("sound test running")
         score = 0
         for _ in range(0, 4):
-            if self.sound_level_high:
+            if self.sound_level_high():
                 score += 1
             sleep(1/4)
+            print("Score: {0}, at {1}".format(score, time()))
         return bool(score >= 4)
