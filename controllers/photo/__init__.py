@@ -1,1 +1,1 @@
-from .photo import PhotoController
+from .controller import PhotoController

@@ -1,1 +1,1 @@
-from .gpio import GPIOController
+from .controller import GPIOController

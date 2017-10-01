@@ -12,7 +12,7 @@ class PhotoController(object):
 
     def take_photo(self):
         if self.short_id:
-            self.camera.capture("/upload/{0}.jpg".format(self.short_id))
+            self.camera.capture("./uploads/{0}.jpg".format(self.short_id))
         else:
             print("Error with short_id")
 
