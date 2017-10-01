@@ -11,14 +11,17 @@ Main Hurlomaton python program
         - screen 2: The picture
         - sreeen 3: Thank you!
 """
-
-from controllers import GUIController, GPIOController
+from shortuuid import ShortUUID
+from controllers import GUIController, GPIOController, PhotoController
 
 if __name__ == '__main__':
     GUI = GUIController()
     GPIO = GPIOController()
+    photo = PhotoController()
 
     while True:
         GUI.update()
         if GPIO.sound_check():
+            photo.set_short_id(ShortUUID().random(length=9))
             GUI.show_success()
+            photo.take_photo()
