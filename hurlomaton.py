@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
     while True:
         GUI.update()
-        if GPIO.sound_check():
-            photo.set_short_id(ShortUUID().random(length=9))
+        if GPIO.sound_check() or GUI.fake_success:
+            photo.set_short_id(ShortUUID(alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ").random(length=9))
             GUI.show_success()
             photo.take_photo()
