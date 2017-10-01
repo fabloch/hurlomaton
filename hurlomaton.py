@@ -16,10 +16,14 @@ from time import sleep
 from gui import GUIController
 from snd_switch import SoundSwitch
 
-# GUI = GUIController()
-# GUI.mainloop()
+        
+if __name__ == '__main__':
 
-sound_switch = SoundSwitch()
+    GUI = GUIController()
 
-while True:
-    print(sound_switch.run_snd_test())
+    sound_switch = SoundSwitch()
+
+    while True:
+        GUI.update()
+        if sound_switch.run_snd_test():
+            GUI.show_frame_success()

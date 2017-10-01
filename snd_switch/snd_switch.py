@@ -10,7 +10,7 @@ class SoundSwitch(object):
         GPIO.add_event_detect(self.GPIO_SND_IN, GPIO.BOTH)
         GPIO.add_event_callback(self.GPIO_SND_IN, self.set_sound_level_high)
 
-    def set_sound_level_high(self):
+    def set_sound_level_high(self, *args, **kwargs):
         """
         Sets sound_level_high to True or False
         by listening GPIO port 16
@@ -26,8 +26,11 @@ class SoundSwitch(object):
         print("sound test running")
         score = 0
         for _ in range(0, 4):
-            if self.sound_level_high():
+            if self.sound_level_high:
                 score += 1
             sleep(1/4)
-            print("Score: {0}, at {1}".format(score, time()))
-        return bool(score >= 4)
+            print("Score {0} at {1}".format(score, time()))
+        if score == 4:
+            return True
+        else:
+            return False
