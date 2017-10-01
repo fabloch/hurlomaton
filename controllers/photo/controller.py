@@ -8,15 +8,15 @@ from PIL import Image
 class PhotoController(object):
     def __init__(self):
         self.camera = PiCamera()
-        self.short_id = None
+        self.filepath = None
 
-    def set_short_id(self, short_id):
-        self.short_id = short_id
+    def set_filepath(self, short_id):
+        self.filepath = "./uploads/{0}.jpg".format(short_id)
 
     def run_all(self):
         image = self.take_photo()
-        processed_image = self.process_photo(image)
-        self.send_photo(processed_image)
+        self.process_photo(image)
+        self.send_photo()
 
     def take_photo(self):
         stream = io.BytesIO()
@@ -29,15 +29,12 @@ class PhotoController(object):
         region = image.crop(box)
         polaroid = Image.open("./media/polaroid.jpg")
         polaroid.paste(region, (50, 50))
-        polaroid.name = self.short_id + ".jpg"
-        return polaroid
+        polaroid.save(self.filepath)
 
-    @classmethod
-    def send_photo(cls, image):
+    def send_photo(self):
         url = 'https://api.graph.cool/file/v1/cj77htypt0n7g01762fd1hubl'
-        file = {'data': image}
+        file = {'data': open(self.filepath, "rb")}
         requests.post(url, files=file)
-
 
     def delete_photo(self):
         pass
