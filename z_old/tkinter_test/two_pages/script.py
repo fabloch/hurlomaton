@@ -23,19 +23,19 @@ class SampleApp(Tk):
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame_slideshow()
-        self.bind("<b>", self.show_frame_success)
-        self.bind("<n>", self.show_frame_slideshow)
+        self.show_slideshow()
+        self.bind("<b>", self.show_success)
+        self.bind("<n>", self.show_slideshow)
         self.bind("<f>", self.toggle_fullscreen)
         self.bind("<Escape>", self.end_gui)
         self.config(cursor="none")
 
-    def show_frame_success(self, event=None):
+    def show_success(self, event=None):
         '''Show a frame for the given page name'''
         self.frames["Success"].tkraise()
         self.after(5000, self.frames["Slideshow"].tkraise)
 
-    def show_frame_slideshow(self, event=None):
+    def show_slideshow(self, event=None):
         '''Show a frame for the given page name'''
         self.frames["Slideshow"].tkraise()
 

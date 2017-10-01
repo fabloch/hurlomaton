@@ -12,13 +12,13 @@ Main Hurlomaton python program
         - sreeen 3: Thank you!
 """
 
-from gui import GUIController
-from snd_switch import SoundSwitch
+from controllers import GUIController, GPIOController
 
-# GUI = GUIController()
-# GUI.mainloop()
+if __name__ == '__main__':
+    GUI = GUIController()
+    GPIO = GPIOController()
 
-SOUND_SWITCH = SoundSwitch()
-
-while True:
-    print(sound_switch.run_snd_test())
+    while True:
+        GUI.update()
+        if GPIO.sound_check():
+            GUI.show_success()
