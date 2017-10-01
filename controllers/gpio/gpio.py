@@ -24,7 +24,7 @@ class GPIOController(object):
         that the sound level is still high
         then returns True. Else returns False
         """
-        print("sound test running")
+        # print("sound test running")
         score = 0
         for _ in range(0, 4):
             if self.sound_level_high:

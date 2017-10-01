@@ -28,7 +28,7 @@ class Slideshow(Frame):
         into a list of tk compatible images
         """
         images = []
-        for img_file in glob.glob('./gui/img/slideshow/*.*'):
+        for img_file in glob.glob('./media/slideshow/*.*'):
             image = Image.open(img_file)
             resized_img = ImageOps.fit(image, self.size, Image.ANTIALIAS)
             tk_image = ImageTk.PhotoImage(resized_img)

@@ -28,7 +28,7 @@ class Success(Frame):
         into a list of tk compatible images
         """
         images = []
-        for img_file in glob.glob('./gui/img/success/*.*'):
+        for img_file in glob.glob('./media/success/*.*'):
             image = Image.open(img_file)
             resized_img = ImageOps.fit(image, self.size, Image.ANTIALIAS)
             tk_image = ImageTk.PhotoImage(resized_img)
