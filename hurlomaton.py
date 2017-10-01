@@ -12,15 +12,14 @@ Main Hurlomaton python program
         - sreeen 3: Thank you!
 """
 
-from time import sleep
 from gui import GUIController
 from snd_switch import SoundSwitch
 
 GUI = GUIController()
 GUI.mainloop()
 
-sound_switch = SoundSwitch()
+SOUND_SWITCH = SoundSwitch()
 
 while True:
-    if sound_switch.run_snd_test:
+    if SOUND_SWITCH.run_snd_test:
         GUI.show_frame_success()
