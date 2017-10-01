@@ -1,6 +1,7 @@
 """
 Graphical User Inferface module
 """
+from time import sleep
 from tkinter import Tk, Frame, font as tkfont
 from .slideshow import Slideshow
 from .success import Success
@@ -13,6 +14,7 @@ class GUIController(Tk):
         Tk.__init__(self, *args, **kwargs)
         self.is_fullscreen = True
         self.wm_attributes('-fullscreen', self.is_fullscreen)
+        self.fake_success = False
 
         container = Frame(self)
         container.pack(side="top", fill="both", expand=True)
@@ -35,6 +37,7 @@ class GUIController(Tk):
         self.bind("<b>", self.show_success)
         self.bind("<n>", self.show_slideshow)
         self.bind("<f>", self.toggle_fullscreen)
+        self.bind("<s>", self.mock_success)
         self.bind("<Escape>", self.end_gui)
         self.config(cursor="none")
 
@@ -51,10 +54,17 @@ class GUIController(Tk):
         """ Toggles from fullscreen/windowed """
         self.is_fullscreen = not self.is_fullscreen
         self.wm_attributes("-fullscreen", self.is_fullscreen)
-
+        
     def end_gui(self, event=None):
         """ Closes the GUI """
         self.destroy()
+
+    def mock_success(self, event=None):
+        self.fake_success = True
+        self.after(1000, self.reset_success)
+
+    def reset_success(self):
+        self.fake_success = False
 
     @property
     def screen(self):
