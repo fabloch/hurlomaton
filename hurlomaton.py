@@ -12,17 +12,15 @@ Main Hurlomaton python program
         - sreeen 3: Thank you!
 """
 
-# fact = 1
-# num = int(input("Enter any number: "))
-# for i in range(1, num+1, 1):
-#     fact = fact * i
-# print("The fact of", num, "is", fact)
+from time import sleep
+from gui import GUIController
+from snd_switch import SoundSwitch
 
-num = int(input("Enter any number: "))
-i = 1
-fact = 1
+GUI = GUIController()
+GUI.mainloop()
 
-while i <= num:
-    fact = fact  * i
-    i = i + 1
- print("The fact of", num, "is", fact)
+sound_switch = SoundSwitch()
+
+while True:
+    if sound_switch.run_snd_test:
+        GUI.show_frame_success()
