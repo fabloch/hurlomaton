@@ -9,16 +9,20 @@ class PhotoController(object):
     def __init__(self):
         self.camera = PiCamera()
         self.short_id = None
-        self.image = None
 
     def set_short_id(self, short_id):
         self.short_id = short_id
+
+    def run_all(self):
+        image = self.take_photo()
+        processed_image = self.process_photo(image)
+        self.send_photo(processed_image)
 
     def take_photo(self):
         stream = io.BytesIO()
         self.camera.capture(stream, format="jpeg")
         stream.seek(0)
-        self.image = Image.open(stream)
+        return Image.open(stream)
 
     def process_photo(self, image):
         box = (418,58, 1502, 1142)
