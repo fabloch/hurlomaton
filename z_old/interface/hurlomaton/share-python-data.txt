@@ -1,5 +1,0 @@
-{
-  "step": 1,
-  "image": "/static/img/photos/photo1.jpeg",
-  "number": "99999"
-}

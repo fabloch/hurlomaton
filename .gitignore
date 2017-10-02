@@ -1,8 +1,5 @@
-cam_test/images/capture/*.JPG
-cam_test/images/capture/*.jpg
-
-cam_test/images/button/*.JPG
-cam_test/images/button/*.jpg
+__pycache__/*
+uploads/*.jpg
 
 .DS_Store
 
