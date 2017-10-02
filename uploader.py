@@ -1,6 +1,7 @@
 import pyinotify
 import requests
 import os
+from time import sleep
 
 WM = pyinotify.WatchManager()
 
@@ -12,7 +13,8 @@ class Uploader(pyinotify.ProcessEvent):
         self.url = "https://api.graph.cool/file/v1/cj77htypt0n7g01762fd1hubl"
 
     def process_IN_CREATE(self, event):
-        print("Uploading:", event.pathname)
+        print("Uploading in two seconds:", event.pathname)
+        sleep(2)
         image = {'data': open(event.pathname, 'rb')}
         response = requests.post(self.url, files=image)
         try:
