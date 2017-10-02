@@ -16,7 +16,6 @@ class PhotoController(object):
     def run_all(self):
         image = self.take_photo()
         self.process_photo(image)
-        self.send_photo()
 
     def take_photo(self):
         stream = io.BytesIO()
