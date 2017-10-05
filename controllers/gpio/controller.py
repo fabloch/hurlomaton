@@ -34,7 +34,7 @@ class GPIOController(object):
             if self.sound_level_high:
                 score += 1
             sleep(1/4)
-            print("Score {0} at {1}".format(score, time()))
+            # print("Score {0} at {1}".format(score, time()))
         if score == 3:
             return True
         else:
