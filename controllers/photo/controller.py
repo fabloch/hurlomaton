@@ -24,10 +24,10 @@ class PhotoController(object):
         return Image.open(stream)
 
     def process_photo(self, image):
-        box = (418, 58, 1502, 1142)
+        box = (420, 0, 1500, 1080)
         region = image.crop(box)
         polaroid = Image.open("./media/polaroid.jpg")
-        polaroid.paste(region, (50, 50))
+        polaroid.paste(region, (51, 51))
         polaroid.save(self.filepath)
 
     def send_photo(self):
