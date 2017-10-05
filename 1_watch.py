@@ -32,8 +32,7 @@ class Uploader(pyinotify.ProcessEvent):
         print(command)
         subprocess.call(command, shell=True)
         
-    @classmethod
-    def send_image(clas, path):
+    def send_image(self, path):
         image = {'data': open(path, 'rb')}
         response = requests.post(self.url, files=image)
         try:
