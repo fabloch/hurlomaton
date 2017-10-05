@@ -1,8 +1,10 @@
 import pyinotify
-import requests
-import os
-import sys
 from time import sleep
+import sys
+
+import requests
+
+import subprocess
 
 WM = pyinotify.WatchManager()
 
@@ -16,10 +18,31 @@ class Uploader(pyinotify.ProcessEvent):
         print("Watching incoming files in uploads...")
 
     def process_IN_CREATE(self, event):
-        print("Uploading in two seconds:", event.pathname)
+        path = event.pathname
+        print("Uploading in two seconds:", path)
         sleep(2)
+        self.print_image(event.path)
+        self.send_image(event.path)
 
-    def check_internet(self):
+    @classmethod
+    def print_image(cls, path):
+        print("Printing image...")
+        command = "lp -d selphy_cp1200 {0}".format(path)
+        print(command)
+        subprocess.call(command)
+        
+    @classmethod
+    def send_image(clas, path):
+        image = {'data': open(path, 'rb')}
+        response = requests.post(self.url, files=image)
+        try:
+            response = response.raise_for_status()
+            print("Image sucessfully sent")
+        except requests.exceptions.RequestException as error:
+            print("Error: {}".format(error))
+
+    @classmethod
+    def check_internet(cls):
         print("Checking internet connection...")
         test_url = "https://www.google.com"
         response = requests.get(test_url)
@@ -28,18 +51,9 @@ class Uploader(pyinotify.ProcessEvent):
             response.raise_for_status()
             print("Connected :)")
         except:
-            print("Internet is down, check connection :(")
+            print("!!!Internet is down, check connection!!!")
             sys.exit()
-    def print_image(self, event):
-        
-    def send_image(self, event):
-        image = {'data': open(event.pathname, 'rb')}
-        response = requests.post(self.url, files=image)
-        try:
-            response = response.raise_for_status()
-            print("Image sucessfully sent")
-        except requests.exceptions.RequestException as error:
-            print("Error: {}".format(error))
+ 
 
 HANDLER = Uploader()
 NOTIFIER = pyinotify.Notifier(WM, HANDLER)
