@@ -20,16 +20,17 @@ class Uploader(pyinotify.ProcessEvent):
     def process_IN_CREATE(self, event):
         path = event.pathname
         print("Uploading in two seconds:", path)
-        sleep(2)
-        self.print_image(event.path)
-        self.send_image(event.path)
+        sleep(5)
+        self.print_image(path)
+        self.send_image(path)
 
     @classmethod
     def print_image(cls, path):
         print("Printing image...")
-        command = "lp -d selphy_cp1200 {0}".format(path)
+        # command = "sudo /usr/bin/lp -d selphy_cp1200 uploads/UEZOFEQCC.jpg, shell=True"
+        command = "sudo /usr/bin/lp -d selphy_cp1200 {0}".format(path)
         print(command)
-        subprocess.call(command)
+        subprocess.call(command, shell=True)
         
     @classmethod
     def send_image(clas, path):
