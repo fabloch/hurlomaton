@@ -1,5 +1,8 @@
 __pycache__/*
 uploads/*.jpg
+to_crop/*.jpg
+to_upload/*.jpg
+to_print/*.jpg
 
 .DS_Store
 

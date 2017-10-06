@@ -1,7 +1,7 @@
 import sys
 from shutil import copyfile
 from time import sleep
-from StringIO import StringIO
+from io import StringIO
 
 import pyinotify
 import requests
@@ -15,8 +15,8 @@ class Uploader(pyinotify.ProcessEvent):
     """
     Watch to_upload folder:
     when an image arrives
-    - copy the image to another folder for printing
     - sends the image to the remove server
+    - process image for printing and sends in to_print 
     """
     def __init__(self):
         super().__init__()
@@ -27,24 +27,25 @@ class Uploader(pyinotify.ProcessEvent):
         print("Watching files to upload...")
 
     def process_IN_CREATE(self, event):
-        """ Extract image path, run crop, save_for_printing and send to remote """
+        """ Extract image path, run crop, save and send to remote """
         self.path = event.pathname
-        self.image = Image.open(self.path)
         print("A new image has arrived:", self.path)
         sleep(2)
-        self.crop()
-        self.save_for_printing()
+        self.image = Image.open(self.path)
+        self.process_for_printing()
+        self.save_to_print()
         self.send_image()
 
-    def crop(self):
-        """ Crop image into a 1080px square"""
-        box = (420, 0, 1500, 1080)
-        self.image = self.image.crop(box)
-        print("Image cropped")
-
-    def save_for_printing(self):
-        """ Save cropped image in to_print folder """
+    def process_for_printing(self):
+        """ Paste square photo into polaroid """
+        photo = Image.open(self.path)
+        self.image = Image.open("./media/polaroid.jpg")
+        self.image.paste(photo, (51, 51))
+        
+    def save_to_print(self):
+        """ Save cropped image in both folders """
         self.image.save(self.path.replace("to_upload", "to_print"))
+        # self.raw_image.save(self.path)
         print("Image copied to to_print")
 
     def send_image(self):
@@ -52,10 +53,8 @@ class Uploader(pyinotify.ProcessEvent):
         # image = {'data': open(self.path, 'rb')
         # https://stackoverflow.com/questions/24247932/send-multiple-stringio-from-pil-image-in-post-requests-with-python
         # https://docs.python.org/2/library/stringio.html
-        output = StringIO()
-        self.image.save(output, "JPEG")
-        output.seek(0)
-        response = requests.post(self.url, files=output)
+        file = {'data': open(self.path, 'rb')}
+        response = requests.post(self.url, files=file)
         try:
             response = response.raise_for_status()
             print("Image sucessfully sent")

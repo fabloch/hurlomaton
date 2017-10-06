@@ -25,17 +25,9 @@ class Printer(pyinotify.ProcessEvent):
         self.path = event.pathname
         print("A new image has arrived:", self.path)
         sleep(2)
-        self.process_image()
-        self.print_image()
+        self.print()
 
-    def process_image(self):
-        """ Paste square photo into polaroid """
-        photo = Image.open(self.path)
-        polaroid = Image.open("./media/polaroid.jpg")
-        polaroid.paste(photo, (51, 51))
-        polaroid.save(self.path)
-
-    def print_image(self):
+    def print(self):
         """ Send print command to """
         print("Printing image...")
         # command = "sudo /usr/bin/lp -d selphy_cp1200 uploads/UEZOFEQCC.jpg, shell=True"
