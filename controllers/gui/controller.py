@@ -44,7 +44,7 @@ class GUIController(Tk):
     def show_success(self, event=None):
         '''Shows a frame for the given page name'''
         self.frames["Success"].show_up()
-        # self.after(5000, self.frames["Slideshow"].show_up)
+        self.after(10000, self.frames["Slideshow"].show_up)
 
     def show_slideshow(self, event=None):
         '''Shows a frame for the given page name'''
@@ -54,7 +54,7 @@ class GUIController(Tk):
         """ Toggles from fullscreen/windowed """
         self.is_fullscreen = not self.is_fullscreen
         self.wm_attributes("-fullscreen", self.is_fullscreen)
-        
+
     def end_gui(self, event=None):
         """ Closes the GUI """
         self.destroy()

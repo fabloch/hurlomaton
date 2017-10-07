@@ -17,7 +17,7 @@ class Success(Frame):
         self.success = Label(self, background="grey")
         self.success.pack(side="top", fill="x")
 
-        self.delay = 3000
+        self.delay = 500
         self.image_loop = cycle(self.image_list())
 
         self.play()
