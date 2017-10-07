@@ -9,7 +9,7 @@ from PIL import Image, ImageEnhance
 
 WM = pyinotify.WatchManager()
 
-MASK = pyinotify.IN_CREATE  # watched events
+MASK = pyinotify.IN_CLOSE_WRITE  # watched events
 
 class Cropper(pyinotify.ProcessEvent):
     """
@@ -21,25 +21,26 @@ class Cropper(pyinotify.ProcessEvent):
     def __init__(self):
         super().__init__()
         self.url = "https://api.graph.cool/file/v1/cj77htypt0n7g01762fd1hubl"
+        self.path = None
         print("Watching files to crop...")
 
-    def process_IN_CREATE(self, event):
+    def process_IN_CLOSE_WRITE(self, event):
         """ Extract image path, run crop, save in to_upload"""
-        path = event.pathname
-        print("A new image has arrived:", path)
-        image = Image.open(path)
+        self.path = event.pathname
+        print("A new image has arrived:", self.path)
+        image = Image.open(self.path)
         self.crop(image)
 
     def crop(self, image):
         """ Crop image into a 1080px square"""
         box = (420, 0, 1500, 1080)
-        image = image.crop(box)
+        result = image.crop(box)
         print("Image cropped")
-        self.save_to_upload(image)
+        self.save_to_upload(result)
 
     def save_to_upload(self, image):
         """ Save cropped image in both folders """
-        image.save(path.replace("to_crop", "to_upload"))
+        image.save(self.path.replace("to_crop", "to_upload"))
         # self.raw_image.save(path)
         print("Image copied to to_upload")
 

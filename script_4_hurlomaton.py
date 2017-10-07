@@ -40,5 +40,5 @@ if __name__ == '__main__':
             GUI.update()
             # sleep(0.5)
             GPIO.spots_on(False)
-            sleep(10)
+            sleep(5)
             GUI.show_slideshow()

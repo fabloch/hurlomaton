@@ -11,7 +11,7 @@ class PhotoController(object):
         self.pathname = None
 
     def set_filepath(self, short_id):
-        self.pathname = "./to_upload/{0}.jpg".format(short_id)
+        self.pathname = "./to_crop/{0}.jpg".format(short_id)
 
     def capture(self):
         self.camera.capture(self.pathname)

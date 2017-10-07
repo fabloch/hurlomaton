@@ -33,7 +33,7 @@ class Printer(pyinotify.ProcessEvent):
         # command = "sudo /usr/bin/lp -d selphy_cp1200 uploads/UEZOFEQCC.jpg, shell=True"
         command = "sudo /usr/bin/lp -d selphy_cp1200 {0}".format(self.path)
         # print(command)
-        subprocess.call(command, shell=True)
+        sub = subprocess.call(command, shell=True)
 
 HANDLER = Printer()
 NOTIFIER = pyinotify.Notifier(WM, HANDLER)
