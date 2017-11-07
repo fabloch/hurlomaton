@@ -60,7 +60,7 @@ if __name__ == '__main__':
                 """
                 time_since_start = datetime.now() - start_time
                 print(time_since_start)
-                if time_since_start >= timedelta(seconds=2):
+                if time_since_start >= timedelta(microseconds=2000000):
                     print("Success")
                 
             else:
