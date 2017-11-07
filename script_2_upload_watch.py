@@ -21,7 +21,7 @@ class Uploader(pyinotify.ProcessEvent):
     def __init__(self):
         super().__init__()
         self.url = "https://api.graph.cool/file/v1/cj77htypt0n7g01762fd1hubl"
-        self.check_internet()
+        # self.check_internet()
         self.path = None
         self.image = None
         print("Watching files to upload...")
