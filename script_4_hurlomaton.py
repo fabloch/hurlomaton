@@ -24,11 +24,11 @@ def capture_photo():
         ).random(length=9)
     )
     myGPIO.spots_on(True)
-    # sleep(1)
+    sleep(1)
     photo.capture()
     print("Capturing " + photo.pathname)
     GUI.show_success()
-    # sleep(0.5)
+    sleep(0.5)
     myGPIO.spots_on(False)
     # sleep(10)
     # GUI.show_slideshow()
@@ -51,7 +51,7 @@ if __name__ == '__main__':
     success_start_time = None
 
     """
-    --------1---X-------2-------3--------->
+    LOOP----1---X-------2-------3--------->
             |   |       |       |
             le son est high     |
             on donne une valeur test_start_time
@@ -59,6 +59,7 @@ if __name__ == '__main__':
                 |       now() - test_start_time >= 2 secondes
                 |       on donne une valeur à success_start_time
                 |       on affiche les diapos success
+                |               |
                 |               |
                 |               now() - success_start_time >= 10 secondes
                 |               on reset tout
@@ -132,5 +133,3 @@ if __name__ == '__main__':
             if test_start_time:
                 print("[x] reset test_start_time")
                 test_start_time = None
-
-# or GUI.fake_success

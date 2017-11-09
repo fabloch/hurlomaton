@@ -56,7 +56,7 @@ class GUIController(Tk):
 
     def end_gui(self, event=None):
         """ Closes the GUI """
-        self.destroy()
+        self.quit()
 
     def mock_success(self, event=None):
         self.fake_success = True
