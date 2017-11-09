@@ -6,7 +6,7 @@ from PIL import Image
 
 WM = pyinotify.WatchManager()
 
-MASK = pyinotify.IN_CREATE  # watched events
+MASK = pyinotify.IN_CLOSE_WRITE  # watched events
 
 class Printer(pyinotify.ProcessEvent):
     """
@@ -20,7 +20,7 @@ class Printer(pyinotify.ProcessEvent):
         self.path = ""
         print("Watching files to print...")
 
-    def process_IN_CREATE(self, event):
+    def process_IN_CLOSE_WRITE(self, event):
         """ Extract the image path, process and print """
         self.path = event.pathname
         print("A new image has arrived:", self.path)

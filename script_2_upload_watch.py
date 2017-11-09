@@ -9,7 +9,7 @@ from PIL import Image, ImageEnhance
 
 WM = pyinotify.WatchManager()
 
-MASK = pyinotify.IN_CREATE  # watched events
+MASK = pyinotify.IN_CLOSE_WRITE  # watched events
 
 class Uploader(pyinotify.ProcessEvent):
     """
@@ -26,7 +26,7 @@ class Uploader(pyinotify.ProcessEvent):
         self.image = None
         print("Watching files to upload...")
 
-    def process_IN_CREATE(self, event):
+    def process_IN_CLOSE_WRITE(self, event):
         """ Extract image path, run crop, save and send to remote """
         self.path = event.pathname
         print("A new image has arrived:", self.path)

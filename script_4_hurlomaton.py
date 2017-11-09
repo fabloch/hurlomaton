@@ -28,7 +28,6 @@ def capture_photo():
     photo.capture()
     print("Capturing " + photo.pathname)
     GUI.show_success()
-    GUI.update()
     # sleep(0.5)
     myGPIO.spots_on(False)
     # sleep(10)
@@ -59,18 +58,18 @@ if __name__ == '__main__':
                 |       |       |
                 |       now() - test_start_time >= 2 secondes
                 |       on donne une valeur à success_start_time
+                |       on affiche les diapos success
                 |               |
                 |               now() - success_start_time >= 10 secondes
                 |               on reset tout
+                |               on affiche les diapos idle
                 |
                 le son passe low avant d'atteindre les 2 secondes
                 on reset test_start_time
     """
     while True:
-        sleep(0.2)
         GUI.update()
         if GPIO.input(SOUND_INPUT_PORT) == 1 or success_start_time:
-            print("[1] Sound level high")
             """
             [1] Le sound level est HIGH
                 OU success_start_time est True
@@ -91,17 +90,23 @@ if __name__ == '__main__':
                 entre now() et test_start_time
                 """
                 test_time_delta = datetime.now() - test_start_time
-                print("[1]*[3] test_time_delta: ", test_time_delta)
                 if test_time_delta >= timedelta(microseconds=2000000):
                     """
                     [2] test_time_delta est >= 2 secondes
-                    success_start_time n'existe pas ?
-                    alors on l'initialise
+                    On est dans la boucle success
                     """
-                    print("[2] success")
                     if not success_start_time:
+                        """
+                        success_start_time n'existe pas ?
+                        alors on l'initialise
+                        on lance la capture
+                        on lance les écrans success
+                        """
+                        print("[2] success")
                         print("[2] init success_start_time")
                         success_start_time = datetime.now()
+                        capture_photo()
+                        GUI.show_success()
                     else:
                         """
                         entre [2] et [3]
@@ -110,20 +115,22 @@ if __name__ == '__main__':
                         entre now() et success_start_time
                         """
                         success_time_delta = datetime.now() - success_start_time
-                        print("[2]*[3] success_time_delta: ", success_time_delta)
                         if success_time_delta >= timedelta(seconds=10):
                             """
                             [3] success_time_delta est >= 10 secondes
-                            on reset tous les start_time
+                            on reset tous les start_time et on affiche le slideshow
                             """
+                            print("[2]*[3] success_time_delta: ", success_time_delta)
                             print("[3] success end reset all")
+                            GUI.show_slideshow()
                             test_start_time = None
                             success_start_time = None
         else:
             """
             [x] Si GPIO == 0 on reset start
             """
-            print("[x] reset test_start_time")
-            test_start_time = None
+            if test_start_time:
+                print("[x] reset test_start_time")
+                test_start_time = None
 
 # or GUI.fake_success

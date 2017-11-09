@@ -44,7 +44,6 @@ class GUIController(Tk):
     def show_success(self, event=None):
         '''Shows a frame for the given page name'''
         self.frames["Success"].show_up()
-        self.after(10000, self.frames["Slideshow"].show_up)
 
     def show_slideshow(self, event=None):
         '''Shows a frame for the given page name'''
