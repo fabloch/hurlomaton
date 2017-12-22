@@ -7,3 +7,8 @@ Improve this readme.
 
 GPIO2 (arduino sound)
 GPIO3 (sortie actionner le relais des spots)
+dfgdfgfdg
+dfgfdgdf
+gfd
+gfd
+gdf
