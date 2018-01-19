@@ -1,4 +1,4 @@
-# Huurlomaton
+# Hurlomaton
 
 ## cam_test
 To test raspberry 
