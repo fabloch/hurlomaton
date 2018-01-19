@@ -69,7 +69,6 @@ if __name__ == '__main__':
                 on reset test_start_time
     """
     while True:
-        GUI.update()
         if GPIO.input(SOUND_INPUT_PORT) == 1 or success_start_time:
             """
             [1] Le sound level est HIGH
@@ -133,3 +132,4 @@ if __name__ == '__main__':
             if test_start_time:
                 print("[x] reset test_start_time")
                 test_start_time = None
+        GUI.update()
