@@ -24,11 +24,11 @@ def capture_photo():
         ).random(length=9)
     )
     myGPIO.spots_on(True)
-    sleep(1)
+    sleep(0.3)
     photo.capture()
     print("Capturing " + photo.pathname)
     GUI.show_success()
-    sleep(0.5)
+    sleep(0.3)
     myGPIO.spots_on(False)
     # sleep(10)
     # GUI.show_slideshow()
@@ -90,7 +90,7 @@ if __name__ == '__main__':
                 entre now() et test_start_time
                 """
                 test_time_delta = datetime.now() - test_start_time
-                if test_time_delta >= timedelta(microseconds=2000000):
+                if test_time_delta >= timedelta(microseconds=1000000):
                     """
                     [2] test_time_delta est >= 2 secondes
                     On est dans la boucle success
