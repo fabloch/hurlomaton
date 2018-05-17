@@ -155,7 +155,7 @@ class Photobooth(Tkinter.Label):
         try:
             final = Image.open(self.DIR_IMAGE + "print_background.png").convert("RGB")
         except:
-            print "Unable to load BG"
+            print("Unable to load BG")
             exit(1)
 
         #Lay out the photos on the final image
