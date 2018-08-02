@@ -40,7 +40,7 @@ class Cropper(pyinotify.ProcessEvent):
 
     def save_to_upload(self, image):
         """ Save cropped image in both folders """
-        image.save(self.path.replace("to_crop", "to_upload"))
+        image.save(self.path.replace("to_crop", "to_print"))
         # self.raw_image.save(path)
         print("Image copied to to_upload")
 
