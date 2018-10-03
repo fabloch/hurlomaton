@@ -17,11 +17,10 @@ class Print(Frame):
         self.size = (width, height)
         self.print = Label(self, background="grey")
         self.print.pack(side="top", fill="x")
-        
+
 
         self.delay = 500
         self.image_loop = None
-        
     def fn_loop(self):
         image_number = 0
         images = []
@@ -52,15 +51,15 @@ class Print(Frame):
     #        print("loaded image #" + str(image_number))
     #    return images
 
-    def play(self, images):
+    def play(self):
         """
         Cycles through the images from image list
         """
-        img_object = next(images)
+        img_object = next(self.image_loop)
         self.print.config(image=img_object)
         self.after(self.delay, self.play)
-        
-     
+
+
 
     def show_up(self):
         """
