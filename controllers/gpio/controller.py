@@ -6,10 +6,14 @@ class GPIOController(object):
         self.SOUND_INPUT_PORT = 2
         self.SPOTS_OUTPUT_PORT = 4
         self.sound_level_high = False
+        self.YES_BUTTON_PORT = 18
+        self.NO_BUTTON_PORT = 23
 
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.SOUND_INPUT_PORT, GPIO.IN)
         GPIO.setup(self.SPOTS_OUTPUT_PORT, GPIO.OUT)
+        GPIO.setup(self.YES_BUTTON_PORT, GPIO.IN, GPIO.PUD_UP)
+        GPIO.setup(self.NO_BUTTON_PORT, GPIO.IN, GPIO.PUD_UP)
         GPIO.add_event_detect(self.SOUND_INPUT_PORT, GPIO.BOTH)
         GPIO.add_event_callback(self.SOUND_INPUT_PORT, self.set_sound_switch)
         

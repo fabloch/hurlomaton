@@ -59,6 +59,7 @@ class Uploader(pyinotify.ProcessEvent):
         except:
             print("!!!Internet is down, check connection!!!")
             sys.exit()
+        
 
 HANDLER = Uploader()
 NOTIFIER = pyinotify.Notifier(WM, HANDLER)
