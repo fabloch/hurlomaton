@@ -59,7 +59,7 @@ class GUIController(Tk):
         
     def list_print(self, event=None):
         '''make the rotation list to show upload'''
-        self.frames["Print"].loop()
+        self.frames["Print"].fn_loop()
     
 
     def toggle_fullscreen(self, event=None):

@@ -22,7 +22,7 @@ class Print(Frame):
         self.delay = 500
         self.image_loop = None
         
-    def loop(self):
+    def fn_loop(self):
         image_number = 0
         images = []
         for img_file in glob.glob('./media/print/*.*'):
@@ -33,8 +33,8 @@ class Print(Frame):
             image_number += 1
             print("loaded image #", image_number)
         self.image_loop = cycle(images)
-        loop = self.image_loop
-        self.play(loop)
+        var_loop = self.image_loop
+        self.play(var_loop)
 
     #def image_list(self):
         """
