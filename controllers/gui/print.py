@@ -21,35 +21,23 @@ class Print(Frame):
 
         self.delay = 500
         self.image_loop = None
+
     def fn_loop(self):
         image_number = 0
         images = []
-        for img_file in glob.glob('./media/print/*.*'):
-            image = Image.open(img_file)
-            resized_img = ImageOps.fit(image, self.size, Image.ANTIALIAS)
-            tk_image = ImageTk.PhotoImage(resized_img)
-            images.append(tk_image)
-            image_number += 1
-            print("loaded image #", image_number)
+        while image_number != 2:
+            for img_file in glob.glob('./media/print/*.*'):
+                image = Image.open(img_file)
+                resized_img = ImageOps.fit(image, self.size, Image.ANTIALIAS)
+                tk_image = ImageTk.PhotoImage(resized_img)
+                images.append(tk_image)
+                image_number += 1
+                print("loaded image #", image_number)
+        image_number = 0
         self.image_loop = cycle(images)
         var_loop = self.image_loop
-        self.play(var_loop)
+        self.play()
 
-    #def image_list(self):
-        """
-        Loads images files from the image_folder directory
-        into a list of tk compatible images
-        """
-    #    image_number = 0
-    #    images = []
-    #    for img_file in glob.glob('./media/print/*.*'):
-    #        image = Image.open(img_file)
-    #        resized_img = ImageOps.fit(image, self.size, Image.ANTIALIAS)
-    #        tk_image = ImageTk.PhotoImage(resized_img)
-    #        images.append(tk_image)
-    #        image_number += 1
-    #        print("loaded image #" + str(image_number))
-    #    return images
 
     def play(self):
         """

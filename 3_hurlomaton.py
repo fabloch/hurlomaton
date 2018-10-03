@@ -17,6 +17,7 @@ from controllers import GUIController, GPIOController, PhotoController
 from shortuuid import ShortUUID
 from RPi import GPIO
 from PIL import Image, ImageTk, ImageOps
+import os
 
 def capture_photo():
     photo.set_filepath(
@@ -24,7 +25,7 @@ def capture_photo():
             alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         ).random(length=9)
     )
-    #myGPIO.spots_on(True)
+    myGPIO.spots_on(True)
     sleep(0.3)
     photo.capture()
     print("Capturing " + photo.pathname)
@@ -41,7 +42,7 @@ if __name__ == '__main__':
     myGPIO = GPIOController()
     photo = PhotoController()
 
-    #myGPIO.spots_on(True)
+    myGPIO.spots_on(True)
     sleep(2)
     myGPIO.spots_on(False)
 
@@ -116,13 +117,15 @@ if __name__ == '__main__':
                         entre now() et success_start_time
                         """
                         success_time_delta = datetime.now() - success_start_time
-                        if success_time_delta >= timedelta(seconds=1) and not slide_print:
-
+                        if success_time_delta >= timedelta(seconds=3) and success_time_delta <= timedelta(seconds=4) and not slide_print:
+                            print("getting images")
                             GUI.list_print()
                             slide_print = True
 
+                        
 
-                        elif (success_time_delta >= timedelta(seconds=1) and success_time_delta <= timedelta(seconds=10)
+
+                        if (success_time_delta >= timedelta(seconds=6) and success_time_delta <= timedelta(seconds=16)
                               and slide_print and not test_print):
                             """
                             succes_time_delta est  >= à 6 secondes et <= à 16 secondes
@@ -141,10 +144,10 @@ if __name__ == '__main__':
                                 print("print: NO")
                                 test_print = True
 
-                        elif (success_time_delta >= timedelta(seconds=9)
-                              and test_print):
+                        elif (success_time_delta >= timedelta(seconds=16)
+                              or test_print):
                             '''
-                            success _time_delta est >= à 25 secondes
+                            success _time_delta est >= à 16 secondes
                             ou l'utilisateur à fait ses choix pour l'upload et l'impression
                             on affiche donc le slideshow
                             '''
@@ -152,6 +155,10 @@ if __name__ == '__main__':
                             test_start_time = None
                             success_start_time = None
                             test_print = False
+                            slide_print=False
+                            os.remove("/home/pi/dev/hurlomaton/media/print/fond-print1.jpg")
+                            os.remove("/home/pi/dev/hurlomaton/media/print/fond-print2.jpg")
+                            
         else:
             """
             [x] Si GPIO == 0 on reset start

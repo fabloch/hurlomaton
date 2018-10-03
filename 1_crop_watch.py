@@ -50,19 +50,19 @@ class Cropper(pyinotify.ProcessEvent):
         
     def make_backgrounds(self, image, time):
         size = (750, 750)
-        position = (540,80)
+        position = (580,400)
         display_image = image.resize(size)
         
-        background_1_print=Image.open("media/backup/fond-succes1-auray.jpg")
+        background_1_print=Image.open("media/fond-print1.jpg")
         background_1_print.paste(display_image,position)
         background_1_print.save("media/print/fond-print1.jpg")
         print("print 1 saved")
         
         
-        background_2_print=Image.open("media/backup/fond-succes2-auray.jpg")
+        background_2_print=Image.open("media/fond-print2.jpg")
         background_2_print.paste(display_image,position)
         background_2_print.save("media/print/fond-print2.jpg")
-        print("print 1 saved")
+        print("print 2 saved")
         
         print("background made")
         self.save_to_upload(image, time)
