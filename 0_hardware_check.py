@@ -120,5 +120,9 @@ print("\033[1;32;40m ****************************")
 print("\033[1;32;40m *ALL SEEMS RIGHT, LET'S GO!*")
 print("\033[1;32;40m ****************************\n")
 
+<<<<<<< HEAD
 commande = "python3.4 1_crop_watch.py & " + Internet + "python3.4 3_hurlomaton.py"
 sub.call(commande, shell = True)
+=======
+commande = "py 1_crop_watch.py & " + Internet + Imprimante + "py 3_hurlomaton.py"
+>>>>>>> d8fcd17edae981db0af8ef4c9ac281ef06c04e4a
