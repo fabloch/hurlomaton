@@ -11,13 +11,14 @@ from picamera import PiCamera
 from datetime import datetime, timedelta
 from RPi import GPIO
 import subprocess as sub
+import os
 
 myGPIO = GPIOController()
 blackTest = False
 whiteTest = False
 internetTest = False
 imprimanteTest = False
-
+tempo = 3
 
 #Test du static
 print("\033[1;36;40m Verification de l'électricité statique...")
@@ -26,15 +27,25 @@ while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 1:
     print("\033[1;31;40m débranchez la machine quelques instants")
     sleep(1)
 print("\033[1;32;40m OK  \n")
-sleep(2)
+sleep(1)
+
+#temporisation pour l'allocation mémoire vidéo
+print("\033[1;36;40m temporisation pour la caméra...")
+while tempo > 0:
+	print("\033[1;36;40m ...")
+	sleep(1)
+	tempo -= 1
+print("\033[1;32;40m OK")
+
+
 
 #Test du micro
-#print("\033[1;36;40m Verification du micro...")
-#print("\033[1;36;40m Hurlez s'il vous plaît")
-#while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 0:
-#    pass
-#print("\033[1;32;40m OK  \n")
-#sleep(1)
+print("\033[1;36;40m Verification du micro...")
+print("\033[1;36;40m Hurlez s'il vous plaît")
+while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 0 or 0xFF == ord('m'):
+    pass
+print("\033[1;32;40m OK  \n")
+sleep(1)
 
 #Test de la caméra
 print("\033[1;36;40m Verification de la caméra...")
@@ -86,7 +97,7 @@ while internetTest == False:
             print("\033[1;36;40m vérification de la connection internet...")
             socket.create_connection(("www.google.com", 80))
             print("\033[1;32;40m OK  \n")
-            internet = sub.run("2_upload_watch")
+            sub.Popen("2_upload_watch")
             internetTest = True
         except OSError:
             print("\033[1;31;40m Connection à internet impossible, ré-esayer ?")
