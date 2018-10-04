@@ -19,7 +19,7 @@ whiteTest = False
 internetTest = False
 imprimanteTest = False
 tempo = 3
-
+'''
 #Test du static
 print("\033[1;36;40m Verification de l'électricité statique...")
 while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 1:
@@ -86,21 +86,22 @@ while whiteTest == False :
         print("\033[1;32;40m OK  \n")
     sleep(0.5)
 sleep(1)
-
+'''
 #test d'internet
 print("\033[1;36;40m comptez-vous utiliser internet ?")
 while internetTest == False:
     if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
+        sleep(1)
         try:
             # connect to the host -- tells us if the host is actually
             # reachable
             print("\033[1;36;40m vérification de la connection internet...")
-            socket.create_connection(("www.google.com", 80))
-            print("\033[1;32;40m OK  \n")
-            sub.Popen("2_upload_watch")
+            socket.create_connection(("www.duckduckgo.com", 80))
+            sub.run("2_upload_watch.py")
             internetTest = True
         except OSError:
             print("\033[1;31;40m Connection à internet impossible, ré-esayer ?")
+        print("\033[1;32;40m OK  \n")
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         print("\033[1;32;40m SKIP \n")
         internetTest = True
