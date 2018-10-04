@@ -18,10 +18,9 @@ blackTest = False
 whiteTest = False
 internetTest = False
 imprimanteTest = False
-tempo = 3
-'''
+
 #Test du static
-print("\033[1;36;40m Verification de l'électricité statique...")
+print("\033[1;36;40m Verification de l'électricité statique..."'module' object has no attribute 'run')
 while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 1:
     print("\033[1;31;40m problème d'électricité statique\n")
     print("\033[1;31;40m débranchez la machine quelques instants")
@@ -29,16 +28,10 @@ while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 1:
 print("\033[1;32;40m OK  \n")
 sleep(1)
 
-#temporisation pour l'allocation mémoire vidéo
-print("\033[1;36;40m temporisation pour la caméra...")
-while tempo > 0:
-	print("\033[1;36;40m ...")
-	sleep(1)
-	tempo -= 1
-print("\033[1;32;40m OK")
-
-
-
+"""
+#tempo pour l'allocation mémoire vidéo
+print
+"""
 #Test du micro
 print("\033[1;36;40m Verification du micro...")
 print("\033[1;36;40m Hurlez s'il vous plaît")
@@ -56,6 +49,7 @@ except:
     print("\033[1;31;40m LA CAMÉRA N'EST PAS CONNECTÉE")
     sys.exit()
 
+camera.close()
 
 #test du bouton noir
 print("\033[1;36;40m appuyez sur le bouton noir")
@@ -86,27 +80,24 @@ while whiteTest == False :
         print("\033[1;32;40m OK  \n")
     sleep(0.5)
 sleep(1)
-'''
+
 #test d'internet
 print("\033[1;36;40m comptez-vous utiliser internet ?")
 while internetTest == False:
     if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
-        sleep(1)
         try:
             # connect to the host -- tells us if the host is actually
             # reachable
             print("\033[1;36;40m vérification de la connection internet...")
-            socket.create_connection(("www.duckduckgo.com", 80))
-            sub.run("2_upload_watch.py")
+            socket.create_connection(("www.google.com", 80))
+            print("\033[1;32;40m OK  \n")
+            sub.Popen("2_upload_watch")
             internetTest = True
-            internet = " & py 2_upload_watch.py"
         except OSError:
             print("\033[1;31;40m Connection à internet impossible, ré-esayer ?")
-        print("\033[1;32;40m OK  \n")
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         print("\033[1;32;40m SKIP \n")
         internetTest = True
-        internet = ""
         
 sleep(1)
 
@@ -118,18 +109,14 @@ while imprimanteTest == False :
         command = "sudo /user/bien/lp -d selphy_cp1200 Printer_Test_Page.png"
         sub = subprocess.call(command, shell=True)
         print("\033[1;32;40m OK  \n")
-        imprimante = " & py 4_print_watch.py"
+        commandeImprimante = "python3 4_print_watch.py"
         sub = subprocess.call(commandeImprimante, shell=True)
         imprimanteTest = True
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         print("\033[1;32;40m SKIP \n")
         imprimanteTest = True
-        imprimante = ""
 
 
 print("\033[1;32;40m ****************************")
 print("\033[1;32;40m *ALL SEEMS RIGHT, LET'S GO!*")
 print("\033[1;32;40m ****************************\n")
-
-commande = "py 1_crop_watch.py" + internet + imprimante + " & py 3_hurlomaton.py"
-sub.call(commande, shell = True)
