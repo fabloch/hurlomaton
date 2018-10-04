@@ -105,7 +105,7 @@ print ("\033[1;36;40m comptez-vous utiliser l'imprimante ?")
 while imprimanteTest == False :
     if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
         print("Impression de test...")
-        command = "sudo /user/bien/lp -d selphy_cp1200 Printer_Test_Page.png"
+        command = "sudo /user/bien/lp -d brother Printer_Test_Page.png"
         sub.call(command, shell=True)
         print("\033[1;32;40m OK  \n")
         Imprimante = "python3 4_print_watch.py & "
@@ -120,9 +120,4 @@ print("\033[1;32;40m ****************************")
 print("\033[1;32;40m *ALL SEEMS RIGHT, LET'S GO!*")
 print("\033[1;32;40m ****************************\n")
 
-<<<<<<< HEAD
-commande = "python3.4 1_crop_watch.py & " + Internet + "python3.4 3_hurlomaton.py"
-sub.call(commande, shell = True)
-=======
 commande = "py 1_crop_watch.py & " + Internet + Imprimante + "py 3_hurlomaton.py"
->>>>>>> d8fcd17edae981db0af8ef4c9ac281ef06c04e4a
