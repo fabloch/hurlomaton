@@ -19,6 +19,7 @@ whiteTest = False
 internetTest = False
 imprimanteTest = False
 
+
 #Test du static
 print("\033[1;36;40m Verification de l'électricité statique...")
 while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 1:
@@ -88,7 +89,7 @@ while internetTest == False:
             print("\033[1;36;40m vérification de la connection internet...")
             socket.create_connection(("www.google.com", 80))
             print("\033[1;32;40m OK  \n")
-            Internet = "py 2_upload_watch.py & "
+            Internet = "python3.4 2_upload_watch.py & "
             internetTest = True
         except OSError:
             print("\033[1;31;40m Connection à internet impossible, ré-esayer ?")
@@ -105,13 +106,13 @@ while imprimanteTest == False :
     if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
         print("Impression de test...")
         command = "sudo /user/bien/lp -d selphy_cp1200 Printer_Test_Page.png"
-        sub = subprocess.call(command, shell=True)
+        sub.call(command, shell=True)
         print("\033[1;32;40m OK  \n")
-        commandeImprimante = "python3 4_print_watch.py"
-        sub = subprocess.call(commandeImprimante, shell=True)
+        Imprimante = "python3 4_print_watch.py & "
         imprimanteTest = True
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         print("\033[1;32;40m SKIP \n")
+        Imprimante = ""
         imprimanteTest = True
 
 
@@ -119,4 +120,5 @@ print("\033[1;32;40m ****************************")
 print("\033[1;32;40m *ALL SEEMS RIGHT, LET'S GO!*")
 print("\033[1;32;40m ****************************\n")
 
-commande = "py 1_crop_watch.py & " + Internet + "py 3_hurlomaton.py"
+commande = "python3.4 1_crop_watch.py & " + Internet + "python3.4 3_hurlomaton.py"
+sub.call(commande, shell = True)
