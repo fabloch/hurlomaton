@@ -25,7 +25,7 @@ def capture_photo():
             alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         ).random(length=9)
     )
-    myGPIO.spots_on(True)
+#    myGPIO.spots_on(True)
     sleep(0.3)
     photo.capture()
     print("Capturing " + photo.pathname)
