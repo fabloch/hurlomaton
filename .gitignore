@@ -7,6 +7,7 @@ to_print
 .DS_Store
 
 *.swp
+*.pyc
 
 node_modules
 interface/public/client/static/img/photos
