@@ -113,7 +113,7 @@ try:
             while printTestFile == False:
                 if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
                     print("Impression de test...")
-                    command = "sudo lp -d Canon_SELPHY_CP1200 Printer_Test_page.png"
+                    command = "sudo lp -d selphy_cp1200 Printer_Test_page.png"
                     sub.call(command, shell=True)
                     printTestFile = True
                 elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:

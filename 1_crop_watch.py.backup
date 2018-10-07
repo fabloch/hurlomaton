@@ -56,7 +56,7 @@ class Cropper(pyinotify.ProcessEvent):
         print("print 2 saved")
         
         print("background made")
-        self.save_to_print(image, time)
+        self.save_to_upload(image, time)
 
     def save_to_upload(self, image, time):
         """ saves cropped image in to_upload folder """

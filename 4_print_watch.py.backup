@@ -31,7 +31,7 @@ class Printer(pyinotify.ProcessEvent):
         """ Send print command to """
         print("Printing image...")
         # command = "sudo /usr/bin/lp -d selphy_cp1200 uploads/UEZOFEQCC.jpg, shell=True"
-        command = "sudo /usr/bin/lp -d Canon_SELPHY_CP1200 {0}".format(self.path)
+        command = "lp -d selphy_cp1200 {0}".format(self.path)
         # print(command)
         sub = subprocess.call(command, shell=True)
 
