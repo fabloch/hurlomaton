@@ -107,11 +107,7 @@ if __name__ == '__main__':
                         success_start_time = datetime.now()
                         capture_photo()
                         GUI.show_success()
-                        
-                                
-                        
-        
-                        
+
                     else:
                         """
                         entre [2] et [3]
@@ -120,12 +116,12 @@ if __name__ == '__main__':
                         entre now() et success_start_time
                         """
                         success_time_delta = datetime.now() - success_start_time
-                        if (success_time_delta >= timedelta(seconds=1) and not slide_print):
-                            
+                        if success_time_delta >= timedelta(seconds=1) and not slide_print:
+
                             GUI.list_print()
                             slide_print = True
-                            
-                            
+
+
                         elif (success_time_delta >= timedelta(seconds=1) and success_time_delta <= timedelta(seconds=10)
                               and slide_print and not test_print):
                             """
@@ -134,17 +130,17 @@ if __name__ == '__main__':
                             on lui laisse donc 10s pour faire un choix
                             """
                             GUI.show_print()
-                            
+
                             if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
                                 sleep(0.5)
                                 print("print: YES")
                                 test_print = True
-                                
+
                             elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
                                 sleep(0.5)
                                 print("print: NO")
                                 test_print = True
-                            
+
                         elif (success_time_delta >= timedelta(seconds=9)
                               and test_print):
                             '''
@@ -155,7 +151,7 @@ if __name__ == '__main__':
                             GUI.show_slideshow()
                             test_start_time = None
                             success_start_time = None
-                            test_print = False    
+                            test_print = False
         else:
             """
             [x] Si GPIO == 0 on reset start
