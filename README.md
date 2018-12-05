@@ -8,6 +8,7 @@ It runs with a Raspberry pi and python scripts.
 - Improve this readme.  
 - Improve the wiki.  
 - Add an hardware check to the boot sequence.
+- Possibly simplify the scripts
 
 ## Hardware list
 - Raspberry Pi: main board
@@ -28,4 +29,5 @@ It runs with a Raspberry pi and python scripts.
 2. Whenever people shouts for long enough, a photo is taken and given a random name
 3. Said photo is saved in the to_crop folder
 4. The crop_watch script crops this photo, use it to make slides to show the result on screen
-5. The photo is shown on screen and 
+5. The photo is shown on screen and the user is given the choice to print it or not
+6. loop back from 2
