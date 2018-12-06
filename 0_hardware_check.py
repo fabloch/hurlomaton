@@ -25,7 +25,7 @@ sleep(1)
 
 #test du bouton noir
 print("\033[1;36;40m appuyez sur le bouton noir")
-while blackTest == False
+while blackTest == False :
     if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
         sleep(1)
         blackTest = False
