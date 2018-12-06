@@ -39,11 +39,15 @@ sleep(1)
 
 #test du bouton blanc
 print("\033[1;36;40m appuyez sur le bouton blanc")
-while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PORT) == 1:
+while whiteTest == False :
     if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
-        print("\033[1;32;40m OK  \n")
-    elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
+        sleep(1)
+        whiteTest = False
         print("\033[1;31;40m mauvais bouton detecté")
+    elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
+        sleep(1)
+        whiteTest = True
+        print("\033[1;32;40m OK  \n")
     sleep(0.5)
 sleep(1)
 
@@ -61,6 +65,9 @@ while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PO
         except:
             print("\033[1;31;40m !!!Internet is down, check connection!!!")
             sys.exit()
+    elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
+        print("\033[1;32;40m SKIP \N")
+        
 sleep(1)
 
 """
