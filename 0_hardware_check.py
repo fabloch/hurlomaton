@@ -31,7 +31,8 @@ while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PO
 
 #test du bouton blanc
 print("\033[1;36;40m appuyez sur le bouton blanc")
-while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PORT) == 1:    if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
+while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PORT) == 1:
+    if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
         print("\033[1;32;40m OK  \n")
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         print("\033[1;31;40m mauvais bouton detecté")
