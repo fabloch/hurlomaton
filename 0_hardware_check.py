@@ -11,6 +11,8 @@ from RPi import GPIO
 from datetime import datetime, timedelta
 
 myGPIO = GPIOController()
+blackTest = False
+whiteTest = False
 
 #Test du static
 print("\033[1;36;40m Verification de l'électricité statique...")
@@ -23,12 +25,16 @@ sleep(1)
 
 #test du bouton noir
 print("\033[1;36;40m appuyez sur le bouton noir")
-while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PORT) == 1:
+while blackTest == False
     if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
+        sleep(1)
+        blackTest = False
         print("\033[1;31;40m mauvais bouton detecté")
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
+        sleep(1)
+        blackTest = True
         print("\033[1;32;40m OK  \n")
-    sleep(1)
+    sleep(0.5)
 sleep(1)
 
 #test du bouton blanc
@@ -38,7 +44,7 @@ while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PO
         print("\033[1;32;40m OK  \n")
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         print("\033[1;31;40m mauvais bouton detecté")
-    sleep(1)
+    sleep(0.5)
 sleep(1)
 
 #test d'internet
