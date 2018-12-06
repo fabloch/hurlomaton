@@ -13,33 +13,34 @@ from datetime import datetime, timedelta
 myGPIO = GPIOController()
 
 #Test du static
-print("Verification de l'électricité statique")
+print("\033[1;36;40m Verification de l'électricité statique...")
 while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 1:
-    print("problème d'électricité statique")
-    print("débranchez la machine quelques instants")
+    print("\033[1;31;40m problème d'électricité statique\n")
+    print("\033[1;36;40m débranchez la machine quelques instants")
     sleep(1)
+print("\033[1;32;40m OK  \n")
 
 #test du bouton noir
-print("appuyez sur le bouton noir")
+print("\033[1;36;40m appuyez sur le bouton noir")
 while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1:
     if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
-        print("mauvais bouton detecté")
+        print("\033[1;31;40m mauvais bouton detecté")
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
-        print("ok")
-    sleep(0.5)
+        print("\033[1;32;40m OK  \n")
+    sleep(1)
 
 #test du bouton blanc
-print("appuyez sur le bouton blanc")
+print("\033[1;36;40m appuyez sur le bouton blanc")
 while GPIO.input(myGPIO.YES_BUTTON_PORT) == 1:
     if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
-        print("ok")
+        print("\033[1;32;40m OK  \n")
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
-        print("mauvais bouton detecté")
-    sleep(0.5)
+        print("\033[1;31;40m mauvais bouton detecté")
+    sleep(1)
 
 
 #test d'internet
-print("comptez-vous utiliser internet ?")
+print("\033[1;36;40m comptez-vous utiliser internet ?")
 while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PORT) == 1:
     if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
         print("Checking internet connection...")
@@ -48,14 +49,17 @@ while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PO
         print(response)
         try:
             response.raise_for_status()
-            print("Internet is working")
+            print("\033[1;32;40m OK  \n")
         except:
-            print("!!!Internet is down, check connection!!!")
+            print("\033[1;31;40m !!!Internet is down, check connection!!!")
             sys.exit()
+sleep(1)
 
+"""
 #test d'imprimante
-print ("comptez-vous utiliser l'imprimante ?")
+print ("\033[1;36;40m comptez-vous utiliser l'imprimante ?")
 while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PORT) == 1:
     if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
         print("checking printer...")
         command = "sudo /user/bien/lp -d selphy_cp1200 Printer_Test_Page.png"
+"""
