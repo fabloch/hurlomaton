@@ -10,6 +10,8 @@ from controllers import GPIOController
 from RPi import GPIO
 from datetime import datetime, timedelta
 
+myGPIO = GPIOController()
+
 #Test du static
 print("Verification de l'électricité statique")
 while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 1:
