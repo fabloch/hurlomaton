@@ -19,6 +19,7 @@ while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 1:
     print("\033[1;36;40m débranchez la machine quelques instants")
     sleep(1)
 print("\033[1;32;40m OK  \n")
+sleep(1)
 
 #test du bouton noir
 print("\033[1;36;40m appuyez sur le bouton noir")
@@ -27,7 +28,10 @@ while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PO
         print("\033[1;31;40m mauvais bouton detecté")
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         print("\033[1;32;40m OK  \n")
+    else :
+        print("\033[1;31;40m erreur")
     sleep(1)
+sleep(1)
 
 #test du bouton blanc
 print("\033[1;36;40m appuyez sur le bouton blanc")
@@ -36,8 +40,10 @@ while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PO
         print("\033[1;32;40m OK  \n")
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         print("\033[1;31;40m mauvais bouton detecté")
+    else :
+        print("\033[1;31;40m erreur")
     sleep(1)
-
+sleep(1)
 
 #test d'internet
 print("\033[1;36;40m comptez-vous utiliser internet ?")
