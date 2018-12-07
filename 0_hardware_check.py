@@ -11,6 +11,7 @@ from RPi import GPIO
 from datetime import datetime, timedelta
 
 myGPIO = GPIOController()
+mikeTest = False
 blackTest = False
 whiteTest = False
 
@@ -26,8 +27,9 @@ sleep(1)
 #Test du micro
 print("\033[1;36;40m Verification du micro...")
 print("\033[1;36;40m Hurlez s'il vous plaît")
-while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 0:
-    print("\033[1;36;40m .")
+while mikeTest == False:
+    if GPIO.input(myGPIO.SOUND_INPUT_PORT) == 1:
+        mikeTest == True
 print("\033[1;32;40m OK  \n")
 sleep(1)
 
