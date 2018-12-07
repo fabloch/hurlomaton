@@ -15,6 +15,8 @@ myGPIO = GPIOController()
 blackTest = False
 whiteTest = False
 internetTest = False
+imprimanteTest = False
+
 
 #Test du static
 print("\033[1;36;40m Verification de l'électricité statique...")
@@ -35,6 +37,7 @@ sleep(1)
 
 #Test de la caméra
 print("\033[1;36;40m Verification de la caméra...")
+print("\033[1;31;40m ")
 try:
     camera = PiCamera()
     print("\033[1;36;40m OK\n")
@@ -80,8 +83,10 @@ while internetTest == False:
         try:
             # connect to the host -- tells us if the host is actually
             # reachable
+            print("\033[1;36;40m vérification de la connection internet...")
             socket.create_connection(("www.google.com", 80))
             print("\033[1;32;40m OK  \n")
+            internetTest = True
         except OSError:
             print("\033[1;31;40m Connection à internet impossible, ré-esayer ?")
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
@@ -90,14 +95,21 @@ while internetTest == False:
         
 sleep(1)
 
-"""
 #test d'imprimante
 print ("\033[1;36;40m comptez-vous utiliser l'imprimante ?")
-while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PORT) == 1:
+while imprimanteTest == False :
     if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
-        print("checking printer...")
-        command = "sudo /user/bien/lp -d selphy_cp1200 Printer_Test_Page.png"
-"""
+        print("Vérification de l'imprimante...")
+        try:
+            command = "sudo /user/bien/lp -d selphy_cp1200 Printer_Test_Page.png"
+            print("\033[1;32;40m OK  \n")
+            imprimanteTest = True
+        except:
+            print("\033[1;31;40m Connection à l'imprimante impossible, ré-esayer ?")
+    elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
+        print("\033[1;32;40m SKIP \n")
+        imprimanteTest = True
+
 
 print("\033[1;32;40m **********************")
 print("\033[1;32;40m ALL IS RIGHT, LET'S GO!")
