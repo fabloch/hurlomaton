@@ -107,6 +107,6 @@ while imprimanteTest == False :
         imprimanteTest = True
 
 
-print("\033[1;32;40m **********************")
-print("\033[1;32;40m ALL SEEMS RIGHT, LET'S GO!")
-print("\033[1;32;40m ***********************\n")
+print("\033[1;32;40m ****************************")
+print("\033[1;32;40m *ALL SEEMS RIGHT, LET'S GO!*")
+print("\033[1;32;40m ****************************\n")
