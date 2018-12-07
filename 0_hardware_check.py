@@ -17,7 +17,7 @@ whiteTest = False
 
 #Test du static
 print("\033[1;36;40m Verification de l'électricité statique...")
-if GPIO.input(myGPIO.SOUND_INPUT_PORT) == 1:
+if GPIO.input(myGPIO.sound_level_high) == True:
     print("\033[1;31;40m problème d'électricité statique\n")
     print("\033[1;36;40m débranchez la machine quelques instants")
     sleep(1)
@@ -27,9 +27,9 @@ sleep(1)
 #Test du micro
 print("\033[1;36;40m Verification du micro...")
 print("\033[1;36;40m Hurlez s'il vous plaît")
-print(myGPIO.SOUND_INPUT_PORT)
+print(myGPIO.sound_level_high)
 while mikeTest == False:
-    if GPIO.input(myGPIO.SOUND_INPUT_PORT) == 1:
+    if GPIO.input(myGPIO.sound_level_high) == True:
         mikeTest == True
 print("\033[1;32;40m OK  \n")
 sleep(1)
