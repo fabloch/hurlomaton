@@ -66,7 +66,7 @@ while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PO
             print("\033[1;31;40m !!!Internet is down, check connection!!!")
             sys.exit()
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
-        print("\033[1;32;40m SKIP \N")
+        print("\033[1;32;40m SKIP \n")
         
 sleep(1)
 
