@@ -2,7 +2,7 @@ import sys
 from shutil import copyfile
 from time import sleep
 from io import StringIO
-
+import socket
 import pyinotify
 import requests
 from PIL import Image, ImageEnhance
@@ -15,13 +15,6 @@ myGPIO = GPIOController()
 blackTest = False
 whiteTest = False
 internetTest = False
-
-try:
-    camera = PiCamera()
-    print("\033[1;36;40m Caméra OK")
-except:
-    print("\033[1;31;40m LA CAMÉRA N'EST PAS CONNECTÉE")
-
 
 #Test du static
 print("\033[1;36;40m Verification de l'électricité statique...")
@@ -41,15 +34,14 @@ print("\033[1;32;40m OK  \n")
 sleep(1)
 
 #Test de la caméra
-print("\033[1;36;40m Verification de la caméra dans 3...")
-sleep(1)
-print("\033[1;36;40m 2...")
-sleep(1)
-print("\033[1;36;40m 1...\n")
-sleep(1)
-camera.start_preview()
-sleep(5)
-camera.stop_preview()
+print("\033[1;36;40m Verification de la caméra...")
+try:
+    camera = PiCamera()
+    print("\033[1;36;40m OK\n")
+except:
+    print("\033[1;31;40m LA CAMÉRA N'EST PAS CONNECTÉE")
+    sys.exit()
+
 
 #test du bouton noir
 print("\033[1;36;40m appuyez sur le bouton noir")
@@ -58,6 +50,7 @@ while blackTest == False :
         sleep(1)
         blackTest = False
         print("\033[1;31;40m mauvais bouton detecté")
+        print("\033[1;36;40m appuyez sur le bouton noir")
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         sleep(1)
         blackTest = True
@@ -72,6 +65,7 @@ while whiteTest == False :
         sleep(1)
         whiteTest = False
         print("\033[1;31;40m mauvais bouton detecté")
+        print("\033[1;36;40m appuyez sur le bouton blanc")
     elif GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
         sleep(1)
         whiteTest = True
@@ -83,17 +77,13 @@ sleep(1)
 print("\033[1;36;40m comptez-vous utiliser internet ?")
 while internetTest == False:
     if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
-        print("Checking internet connection...")
-        test_url = "https://www.google.com"
-        response = requests.get(test_url)
-        print(response)
         try:
-            response.raise_for_status()
+            # connect to the host -- tells us if the host is actually
+            # reachable
+            socket.create_connection(("www.google.com", 80))
             print("\033[1;32;40m OK  \n")
-            internetTest = True
-        except:
-            print("\033[1;31;40m !!!Internet is down, check connection!!!")
-            sys.exit()
+        except OSError:
+            print("\033[1;31;40m Connection à internet impossible, ré-esayer ?")
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         print("\033[1;32;40m SKIP \n")
         internetTest = True
