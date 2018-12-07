@@ -14,6 +14,7 @@ from RPi import GPIO
 myGPIO = GPIOController()
 blackTest = False
 whiteTest = False
+internetTest = False
 camera = PiCamera()
 
 #Test du static
@@ -38,7 +39,7 @@ print("\033[1;36;40m Verification de la caméra dans 3...")
 sleep(1)
 print("\033[1;36;40m 2...")
 sleep(1)
-print("\033[1;36;40m 1...")
+print("\033[1;36;40m 1...\n")
 sleep(1)
 camera.start_preview()
 sleep(5)
@@ -74,7 +75,7 @@ sleep(1)
 
 #test d'internet
 print("\033[1;36;40m comptez-vous utiliser internet ?")
-while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PORT) == 1:
+while internetTest == False:
     if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
         print("Checking internet connection...")
         test_url = "https://www.google.com"
@@ -83,11 +84,13 @@ while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PO
         try:
             response.raise_for_status()
             print("\033[1;32;40m OK  \n")
+            internetTest = True
         except:
             print("\033[1;31;40m !!!Internet is down, check connection!!!")
             sys.exit()
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         print("\033[1;32;40m SKIP \n")
+        internetTest = True
         
 sleep(1)
 
@@ -99,3 +102,7 @@ while GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 and GPIO.input(myGPIO.YES_BUTTON_PO
         print("checking printer...")
         command = "sudo /user/bien/lp -d selphy_cp1200 Printer_Test_Page.png"
 """
+
+print("\033[1;32;40m **********************")
+print("\033[1;32;40m ALL IS RIGHT, LET'S GO!")
+print("\033[1;32;40m ***********************\n")
