@@ -7,13 +7,13 @@ import pyinotify
 import requests
 from PIL import Image, ImageEnhance
 from controllers import GPIOController
-from RPi import GPIO
+from picamera import PiCamera
 from datetime import datetime, timedelta
 
 myGPIO = GPIOController()
-mikeTest = False
 blackTest = False
 whiteTest = False
+camera = PiCamera()
 
 #Test du static
 print("\033[1;36;40m Verification de l'électricité statique...")
@@ -27,11 +27,21 @@ sleep(1)
 #Test du micro
 print("\033[1;36;40m Verification du micro...")
 print("\033[1;36;40m Hurlez s'il vous plaît")
-print(myGPIO.SOUND_INPUT_PORT)
 while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 0:
     pass
 print("\033[1;32;40m OK  \n")
 sleep(1)
+
+#Test de la caméra
+print("\033[1;36;40m Verification de la caméra dans 3...")
+sleep(1)
+print("\033[1;36;40m 2...")
+sleep(1)
+print("\033[1;36;40m 1...")
+sleep(1)
+camera.start_preview()
+sleep(5)
+camera.stop_preview()
 
 #test du bouton noir
 print("\033[1;36;40m appuyez sur le bouton noir")
