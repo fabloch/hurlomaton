@@ -15,7 +15,13 @@ myGPIO = GPIOController()
 blackTest = False
 whiteTest = False
 internetTest = False
-camera = PiCamera()
+
+try:
+    camera = PiCamera()
+    print("\033[1;36;40m Caméra OK")
+except:
+    print("\033[1;31;40m LA CAMÉRA N'EST PAS CONNECTÉE")
+
 
 #Test du static
 print("\033[1;36;40m Verification de l'électricité statique...")
