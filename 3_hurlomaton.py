@@ -18,6 +18,8 @@ from shortuuid import ShortUUID
 from RPi import GPIO
 from PIL import Image, ImageTk, ImageOps
 import os
+import socket
+from picamera import PiCamera
 
 myGPIO = GPIOController()
 blackTest = False
