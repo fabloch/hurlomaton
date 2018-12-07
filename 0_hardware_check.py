@@ -27,7 +27,7 @@ sleep(1)
 #Test du micro
 print("\033[1;36;40m Verification du micro...")
 print("\033[1;36;40m Hurlez s'il vous plaît")
-print(myGPIO.SOUND_INPUT_PORT))
+print(myGPIO.SOUND_INPUT_PORT)
 while mikeTest == False:
     if GPIO.input(myGPIO.SOUND_INPUT_PORT) == 1:
         mikeTest == True
