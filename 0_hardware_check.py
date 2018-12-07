@@ -9,6 +9,7 @@ from PIL import Image, ImageEnhance
 from controllers import GPIOController
 from picamera import PiCamera
 from datetime import datetime, timedelta
+from RPi import GPIO
 
 myGPIO = GPIOController()
 blackTest = False
