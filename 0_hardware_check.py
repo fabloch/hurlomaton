@@ -27,7 +27,9 @@ sleep(1)
 print("\033[1;36;40m Verification du micro...")
 print("\033[1;36;40m Hurlez s'il vous plaît")
 while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 0:
-    
+    print("\033[1;36;40m .")
+print("\033[1;32;40m OK  \n")
+sleep(1)
 
 #test du bouton noir
 print("\033[1;36;40m appuyez sur le bouton noir")
