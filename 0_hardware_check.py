@@ -37,10 +37,9 @@ sleep(1)
 
 #Test de la caméra
 print("\033[1;36;40m Verification de la caméra...")
-print("\033[1;31;40m ")
 try:
     camera = PiCamera()
-    print("\033[1;36;40m OK\n")
+    print("\033[1;32;40m OK\n")
 except:
     print("\033[1;31;40m LA CAMÉRA N'EST PAS CONNECTÉE")
     sys.exit()
@@ -99,18 +98,15 @@ sleep(1)
 print ("\033[1;36;40m comptez-vous utiliser l'imprimante ?")
 while imprimanteTest == False :
     if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
-        print("Vérification de l'imprimante...")
-        try:
-            command = "sudo /user/bien/lp -d selphy_cp1200 Printer_Test_Page.png"
-            print("\033[1;32;40m OK  \n")
-            imprimanteTest = True
-        except:
-            print("\033[1;31;40m Connection à l'imprimante impossible, ré-esayer ?")
+        print("Impression de test...")
+        command = "sudo /user/bien/lp -d selphy_cp1200 Printer_Test_Page.png"
+        print("\033[1;32;40m OK  \n")
+        imprimanteTest = True
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         print("\033[1;32;40m SKIP \n")
         imprimanteTest = True
 
 
 print("\033[1;32;40m **********************")
-print("\033[1;32;40m ALL IS RIGHT, LET'S GO!")
+print("\033[1;32;40m ALL SEEMS RIGHT, LET'S GO!")
 print("\033[1;32;40m ***********************\n")
