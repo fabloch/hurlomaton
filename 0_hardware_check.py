@@ -86,8 +86,8 @@ while internetTest == False:
             print("\033[1;36;40m vérification de la connection internet...")
             socket.create_connection(("www.google.com", 80))
             print("\033[1;32;40m OK  \n")
-            #commandeInternet = "python3 2_upload_watch.py"
-            #sub = subprocess.call(commandeInternet, shell=True)
+            commandeInternet = "python3 2_upload_watch.py"
+            sub = subprocess.call(commandeInternet, shell=True)
             internetTest = True
         except OSError:
             print("\033[1;31;40m Connection à internet impossible, ré-esayer ?")
@@ -103,9 +103,10 @@ while imprimanteTest == False :
     if GPIO.input(myGPIO.YES_BUTTON_PORT) == 0:
         print("Impression de test...")
         command = "sudo /user/bien/lp -d selphy_cp1200 Printer_Test_Page.png"
+        sub = subprocess.call(command, shell=True)
         print("\033[1;32;40m OK  \n")
-        #commandeImprimante = "python3 4_print_watch.py"
-        #sub = subprocess.call(commandeImprimante, shell=True)
+        commandeImprimante = "python3 4_print_watch.py"
+        sub = subprocess.call(commandeImprimante, shell=True)
         imprimanteTest = True
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         print("\033[1;32;40m SKIP \n")
@@ -115,9 +116,3 @@ while imprimanteTest == False :
 print("\033[1;32;40m ****************************")
 print("\033[1;32;40m *ALL SEEMS RIGHT, LET'S GO!*")
 print("\033[1;32;40m ****************************\n")
-
-camera = None
-
-
-#commandeFinale = "python3 3_hurlomaton.py"
-#sub = subprocess.call(commandeFinale, shell=True)
