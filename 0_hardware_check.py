@@ -119,5 +119,5 @@ print("\033[1;32;40m ****************************\n")
 camera = None
 
 
-commandeFinale = "python3 3_hurlomaton.py"
-sub = subprocess.call(commandeFinale, shell=True)
+#commandeFinale = "python3 3_hurlomaton.py"
+#sub = subprocess.call(commandeFinale, shell=True)
