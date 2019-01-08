@@ -29,12 +29,12 @@ print("\033[1;32;40m OK  \n")
 sleep(1)
 
 #Test du micro
-print("\033[1;36;40m Verification du micro...")
-print("\033[1;36;40m Hurlez s'il vous plaît")
-while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 0:
-    pass
-print("\033[1;32;40m OK  \n")
-sleep(1)
+#print("\033[1;36;40m Verification du micro...")
+#print("\033[1;36;40m Hurlez s'il vous plaît")
+#while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 0:
+#    pass
+#print("\033[1;32;40m OK  \n")
+#sleep(1)
 
 #Test de la caméra
 print("\033[1;36;40m Verification de la caméra...")
