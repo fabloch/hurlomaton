@@ -116,5 +116,8 @@ print("\033[1;32;40m ****************************")
 print("\033[1;32;40m *ALL SEEMS RIGHT, LET'S GO!*")
 print("\033[1;32;40m ****************************\n")
 
+camera = None
+
+
 commandeFinale = "python3 1_crop_watch.py & python3 3_hurlomaton.py"
 sub = subprocess.call(commandeFinale, shell=True)
