@@ -86,8 +86,7 @@ while internetTest == False:
             print("\033[1;36;40m vérification de la connection internet...")
             socket.create_connection(("www.google.com", 80))
             print("\033[1;32;40m OK  \n")
-            commandeInternet = "python3 2_upload_watch.py"
-            sub = subprocess.call(commandeInternet, shell=True)
+            subprocess.run("2_upload_watch.py")
             internetTest = True
         except OSError:
             print("\033[1;31;40m Connection à internet impossible, ré-esayer ?")
