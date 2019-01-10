@@ -26,7 +26,7 @@ while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 1:
     print("\033[1;31;40m débranchez la machine quelques instants")
     sleep(1)
 print("\033[1;32;40m OK  \n")
-sleep(1)
+sleep(2)
 
 #Test du micro
 #print("\033[1;36;40m Verification du micro...")
