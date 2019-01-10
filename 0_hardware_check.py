@@ -10,7 +10,7 @@ from controllers import GPIOController
 from picamera import PiCamera
 from datetime import datetime, timedelta
 from RPi import GPIO
-import subprocess
+import subprocess as sub
 
 myGPIO = GPIOController()
 blackTest = False
@@ -86,7 +86,7 @@ while internetTest == False:
             print("\033[1;36;40m vérification de la connection internet...")
             socket.create_connection(("www.google.com", 80))
             print("\033[1;32;40m OK  \n")
-            subprocess.run("2_upload_watch.py")
+            sub.run("2_upload_watch")
             internetTest = True
         except OSError:
             print("\033[1;31;40m Connection à internet impossible, ré-esayer ?")
