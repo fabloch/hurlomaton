@@ -99,12 +99,14 @@ while internetTest == False:
             socket.create_connection(("www.duckduckgo.com", 80))
             sub.run("2_upload_watch.py")
             internetTest = True
+            internet = " & py 2_upload_watch.py"
         except OSError:
             print("\033[1;31;40m Connection à internet impossible, ré-esayer ?")
         print("\033[1;32;40m OK  \n")
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         print("\033[1;32;40m SKIP \n")
         internetTest = True
+        internet = ""
         
 sleep(1)
 
@@ -116,14 +118,18 @@ while imprimanteTest == False :
         command = "sudo /user/bien/lp -d selphy_cp1200 Printer_Test_Page.png"
         sub = subprocess.call(command, shell=True)
         print("\033[1;32;40m OK  \n")
-        commandeImprimante = "python3 4_print_watch.py"
+        imprimante = " & py 4_print_watch.py"
         sub = subprocess.call(commandeImprimante, shell=True)
         imprimanteTest = True
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         print("\033[1;32;40m SKIP \n")
         imprimanteTest = True
+        imprimante = ""
 
 
 print("\033[1;32;40m ****************************")
 print("\033[1;32;40m *ALL SEEMS RIGHT, LET'S GO!*")
 print("\033[1;32;40m ****************************\n")
+
+commande = "py 1_crop_watch.py" + internet + imprimante + " & py 3_hurlomaton.py"
+sub.call(commande, shell = True)
