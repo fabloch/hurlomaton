@@ -20,7 +20,7 @@ internetTest = False
 imprimanteTest = False
 
 #Test du static
-print("\033[1;36;40m Verification de l'électricité statique..."'module' object has no attribute 'run')
+print("\033[1;36;40m Verification de l'électricité statique...")
 while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 1:
     print("\033[1;31;40m problème d'électricité statique\n")
     print("\033[1;31;40m débranchez la machine quelques instants")
@@ -28,10 +28,7 @@ while GPIO.input(myGPIO.SOUND_INPUT_PORT) == 1:
 print("\033[1;32;40m OK  \n")
 sleep(1)
 
-"""
-#tempo pour l'allocation mémoire vidéo
-print
-"""
+
 #Test du micro
 print("\033[1;36;40m Verification du micro...")
 print("\033[1;36;40m Hurlez s'il vous plaît")
@@ -91,12 +88,13 @@ while internetTest == False:
             print("\033[1;36;40m vérification de la connection internet...")
             socket.create_connection(("www.google.com", 80))
             print("\033[1;32;40m OK  \n")
-            sub.Popen("2_upload_watch")
+            Internet = "py 2_upload_watch.py & "
             internetTest = True
         except OSError:
             print("\033[1;31;40m Connection à internet impossible, ré-esayer ?")
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         print("\033[1;32;40m SKIP \n")
+        Internet = ""
         internetTest = True
         
 sleep(1)
@@ -120,3 +118,5 @@ while imprimanteTest == False :
 print("\033[1;32;40m ****************************")
 print("\033[1;32;40m *ALL SEEMS RIGHT, LET'S GO!*")
 print("\033[1;32;40m ****************************\n")
+
+commande = "py 1_crop_watch.py & " + Internet + "py 3_hurlomaton.py"
