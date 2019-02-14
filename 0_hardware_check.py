@@ -107,11 +107,11 @@ while imprimanteTest == False :
         command = "sudo /user/bien/lp -d selphy_cp1200 Printer_Test_Page.png"
         sub = subprocess.call(command, shell=True)
         print("\033[1;32;40m OK  \n")
-        commandeImprimante = "python3 4_print_watch.py"
-        sub = subprocess.call(commandeImprimante, shell=True)
+        Imprimante = "python3 4_print_watch.py & "
         imprimanteTest = True
     elif GPIO.input(myGPIO.NO_BUTTON_PORT) == 0:
         print("\033[1;32;40m SKIP \n")
+        Imprimante = ""
         imprimanteTest = True
 
 
@@ -119,4 +119,4 @@ print("\033[1;32;40m ****************************")
 print("\033[1;32;40m *ALL SEEMS RIGHT, LET'S GO!*")
 print("\033[1;32;40m ****************************\n")
 
-commande = "py 1_crop_watch.py & " + Internet + "py 3_hurlomaton.py"
+commande = "py 1_crop_watch.py & " + Internet + Imprimante + "py 3_hurlomaton.py"
