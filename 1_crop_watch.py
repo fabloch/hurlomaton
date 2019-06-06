@@ -10,15 +10,6 @@ from controllers import GPIOController
 from RPi import GPIO
 from datetime import datetime, timedelta
 
-WM = pyinotify.WatchManager()
-
-MASK = pyinotify.IN_CLOSE_WRITE# watched events
-
-myGPIO = GPIOController()
-succes_time_start=None
-test_upload = False
-test_print = False
-
 class Cropper(pyinotify.ProcessEvent):
     """
     Watch to_crop folder:
@@ -84,7 +75,7 @@ class Cropper(pyinotify.ProcessEvent):
         print("Do you want to print ?")
         while (GPIO.input(myGPIO.YES_BUTTON_PORT) == 1 and GPIO.input(myGPIO.NO_BUTTON_PORT) == 1 
         or GPIO.input(myGPIO.YES_BUTTON_PORT) == 0 and GPIO.input(myGPIO.NO_BUTTON_PORT) == 0
-        or success_time_delta >= timedelta(seconds=10) and success_time_delta <= timedelta(seconds=20)):
+        or success_time_delta >= timedelta(seconds=20) and success_time_delta <= timedelta(seconds=20)):
             
             success_time_delta = datetime.now() - time
         
@@ -106,6 +97,14 @@ class Cropper(pyinotify.ProcessEvent):
         
         print("done")
 
+WM = pyinotify.WatchManager()
+
+MASK = pyinotify.IN_CLOSE_WRITE# watched events
+myGPIO = GPIOController()
+succes_time_start=None
+test_upload = False
+test_print = False
+    
 HANDLER = Cropper()
 NOTIFIER = pyinotify.Notifier(WM, HANDLER)
 

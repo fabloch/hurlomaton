@@ -8,7 +8,7 @@ class GPIOController(object):
         self.sound_level_high = False
         self.YES_BUTTON_PORT = 18
         self.NO_BUTTON_PORT = 23
-
+        
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.SOUND_INPUT_PORT, GPIO.IN)
         GPIO.setup(self.SPOTS_OUTPUT_PORT, GPIO.OUT)
