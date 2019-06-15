@@ -1,6 +1,6 @@
 # Huuurlomaton :
 
-Problématiques esthétiques :
+_Problématiques esthétiques :_
 -	Bien recouper le coin avec un léger arrondi. Penser à faire une symétrie.
 -	Signalétiques, panneaux d’affichage
 -	Imaginer un panneau en carton ou un écran d’affichage des photos prises au cours de la soirée.
@@ -8,7 +8,7 @@ Problématiques esthétiques :
 -	Faire des t-shirts ou badges hurlomaton pour qu’on se fasse mieux reconnaître.
 -	Avoir des accessoires genre lunettes, perruques...
 
-Problématiques fonctionnelles :
+_Problématiques fonctionnelles :_
 -	Fixer une boite dans le hurlo pour vis etc...
 -	Ajouter un tabouret ou marche pieds pour les enfants.
 -	Calles pour surélever le hurlo par l’arrière ou modifier la position de la caméra pour ne pas avoir à modifier et rajouter des calles à chaque utilisation.
@@ -23,7 +23,7 @@ Problématiques fonctionnelles :
 -	Faire fonctionner les spots du huurlo ou avoir une guirlande à l’intérieur pour avoir un peu plus de lumière sur les photos.
 
 
-Problématiques URGENTES :
+_Problématiques URGENTES :_
 - Trouver pourquoi le hurlo beugue 
 → possibilité trop de basses concert donc beugue (des fois les photos se déclenchent toutes seules et sans les barres de niveaux de son…) → à chaque fois obligé de reboot
 - Gros problème imprimante (imprime quand elle veut)
