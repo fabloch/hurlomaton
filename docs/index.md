@@ -1,5 +1,5 @@
-# Hurlomaton
 ## problèmes
+- [Urgents](problemes/urgent)
 - [Esthétiques](problemes/esthetiques.md)
-- [problèmes urgents](problemes/urgent)
-- [Problematiques Fonctionnelles](problemes/fonctionnel.md)
+- [Fonctionnelles](problemes/fonctionnel.md)
+
