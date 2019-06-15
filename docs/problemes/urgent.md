@@ -5,3 +5,4 @@
    - Gros problème électricité statique → à chaque fois obligé de rebrancher les fils de l’arduino
    - Quand ont à branché le câble Ethernet au réseau du fablab → automatiquement le hurlo s’est connecté aux imprimantes du fablab
 - l'électronique est trop haute, la descendre. 
+- fixer le cables pour qu'il n'y ai pas de tension dans les prises.
