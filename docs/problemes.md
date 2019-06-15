@@ -21,6 +21,7 @@ _Problématiques fonctionnelles :_
 -	Ajouter algorithme « gagnant de la soirée » car cris le plus fort et inversement. Affichage ! Et organiser une sorte de concours avec ceux qui ont criés le plus fort et ceux qui ont criés le moins forts, pour qu’il revienne crier encore plus fort.
 -	Rajouter une option « Flop » quand les gens n’ont pas crié assez fort.
 -	Faire fonctionner les spots du huurlo ou avoir une guirlande à l’intérieur pour avoir un peu plus de lumière sur les photos.
+- Ne prendre automatiquement que la deuxième photo, qui est toujours meilleurs. Indiquer sur l'écran après la première photo "peu mieux faire !" et imprimer directement la deuxième.
 
 
 _Problématiques URGENTES :_
