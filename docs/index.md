@@ -1,3 +1,4 @@
 # Hurlomaton
-## [esthetiques](problemes/esthetiques.md)
-[problèmes urgents](problemes/urgent)
+## problèmes
+- [esthetiques](problemes/esthetiques.md)
+- [problèmes urgents](problemes/urgent)
