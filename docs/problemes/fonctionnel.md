@@ -4,7 +4,7 @@
 - Ajouter un tabouret ou marche pieds pour les enfants.
 - Cales pour surélever le hurlo par l’arrière ou modifier la position de la caméra pour ne pas avoir à modifier et rajouter des calles à chaque utilisation.
 - Clavier et Souris sans fil
- - Problème électricité Statique
+  - Problème électricité Statique
   - Résolution du problème car maintenant on sait que le pb d’électricité statique vient de l’arduino et de ses connectiques.
 - Refaire l’emplacement de la carte arduino en attachant tous les fils correctement pour supprimer le pb d’électricité statique.
 - Gros gros problème avec l’imprimante. Elle ne fait que par moment des tirages tests, et par moment les tirages des photos et par moment rien dutout…
