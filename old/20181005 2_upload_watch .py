@@ -32,7 +32,21 @@ class Uploader(pyinotify.ProcessEvent):
         print("A new image has arrived:", self.path)
         sleep(2)
         self.image = Image.open(self.path)
+        self.process_for_printing()
+        self.save_to_print()
         self.send_image()
+
+    def process_for_printing(self):
+        """ Paste square photo into polaroid """
+        photo = Image.open(self.path)
+        self.image = Image.open("./media/polaroid.jpg")
+        self.image.paste(photo, (51, 51))
+        
+    def save_to_print(self):
+        """ Save cropped image in both folders """
+        self.image.save(self.path.replace("to_upload", "to_print"))
+        # self.raw_image.save(self.path)
+        print("Image copied to to_print")
 
     def send_image(self):
         """ send image to the remote server """
@@ -59,7 +73,6 @@ class Uploader(pyinotify.ProcessEvent):
         except:
             print("!!!Internet is down, check connection!!!")
             sys.exit()
-        
 
 HANDLER = Uploader()
 NOTIFIER = pyinotify.Notifier(WM, HANDLER)

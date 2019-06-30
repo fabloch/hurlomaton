@@ -1,5 +1,5 @@
 #!/bin/bash
-source /home/pi/dev/virtualenv/hurlo/bin/activate
+source /home/pi/dev/venv/bin/activate
 cd /home/pi/dev/hurlomaton
 echo "tempo pour la caméra 5..." &&
 sleep 1s &&
