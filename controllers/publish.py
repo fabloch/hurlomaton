@@ -1,4 +1,4 @@
-from cups import Connection
+from cups import Connection, IPPError
 from datetime import datetime
 from utils import CONST
 
@@ -30,7 +30,7 @@ class PublishController(object):
                 event=CONST["EVENT_NAME"], date=datetime.now().strftime("%Y%m%d_%H-%M")
             ),
             {},
-        )
+        )   
 
     def check_print_done(self):
         if self.conn.getJobs().get(self.job_id, None) is not None:

@@ -46,6 +46,8 @@ if __name__ == "__main__":
             publish_start = None
             bug_mode = None
             tick = None
+            IO.yes_btn_pressed = False
+            IO.no_btn_pressed = False
 
         def show_idle():
             global UI
@@ -114,7 +116,7 @@ if __name__ == "__main__":
                 tick,
             ]
 
-            if IO.no_btn_pressed:
+            if not any(states) and IO.yes_btn_pressed:
                 show_publishing()
 
             if bug_mode:

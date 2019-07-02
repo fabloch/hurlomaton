@@ -20,17 +20,17 @@ class IOController(object):
 
         GPIO.setup(self.YES_BUTTON_PORT, GPIO.IN, GPIO.PUD_UP)
         yes_callback = ButtonHandler(
-            self.YES_BUTTON_PORT, self.set_yes_pressed, edge="rising", bouncetime=500
+            self.YES_BUTTON_PORT, self.set_yes_pressed, edge="rising", bouncetime=100
         )
         yes_callback.start()
-        GPIO.add_event_detect(self.YES_BUTTON_PORT, GPIO.BOTH, callback=yes_callback)
+        GPIO.add_event_detect(self.YES_BUTTON_PORT, GPIO.RISING, callback=yes_callback)
 
         GPIO.setup(self.NO_BUTTON_PORT, GPIO.IN, GPIO.PUD_UP)
         no_callback = ButtonHandler(
-            self.NO_BUTTON_PORT, self.set_no_pressed, edge="rising", bouncetime=500
+            self.NO_BUTTON_PORT, self.set_no_pressed, edge="rising", bouncetime=100
         )
         no_callback.start()
-        GPIO.add_event_detect(self.NO_BUTTON_PORT, GPIO.BOTH, callback=no_callback)
+        GPIO.add_event_detect(self.NO_BUTTON_PORT, GPIO.RISING, callback=no_callback)
 
         GPIO.setup(self.SPOTS_OUTPUT_PORT, GPIO.OUT)
         GPIO.output(self.SPOTS_OUTPUT_PORT, False)
@@ -40,11 +40,11 @@ class IOController(object):
 
     def set_yes_pressed(self, *args, **kwargs):
         print("yes event detected:", GPIO.input(self.YES_BUTTON_PORT))
-        self.yes_btn_pressed = not GPIO.input(self.YES_BUTTON_PORT)
+        self.yes_btn_pressed = True
 
     def set_no_pressed(self, *args, **kwargs):
         print("no event detected:", GPIO.input(self.YES_BUTTON_PORT))
-        self.no_btn_pressed = not GPIO.input(self.NO_BUTTON_PORT)
+        self.no_btn_pressed = True
 
     def spots_on(self, switch=False):
         GPIO.output(self.SPOTS_OUTPUT_PORT, switch)

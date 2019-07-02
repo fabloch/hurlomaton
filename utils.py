@@ -13,10 +13,9 @@ CONST = {
     "SPOTS_OUTPUT_PORT": 4,
     "YES_BUTTON_PORT": 18,
     "NO_BUTTON_PORT": 23,
-    "MEDIA_FOLDER": "testing",
     "IDLE_DELAY_MS": 5000,
     "PRINTER_NAME": "Canon_SELPHY_CP1200",
-    "EVENT_NAME": "testing",
+    "EVENT_NAME": "2019cm2",
 }
 
 

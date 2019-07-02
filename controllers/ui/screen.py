@@ -29,7 +29,7 @@ class Screen(Frame):
         selection = [
             f
             for f in glob.glob(
-                "./media/{folder}/*.*".format(folder=CONST["MEDIA_FOLDER"])
+                "./media/{folder}/*.*".format(folder=CONST["EVENT_NAME"])
             )
             if self.name in f
         ]

@@ -5,6 +5,7 @@ to_upload
 to_print
 .DS_Store
 .AppleDouble
+ramdisk/*
 
 *.swp
 *.pyc
