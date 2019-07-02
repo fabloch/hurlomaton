@@ -3,8 +3,8 @@ uploads/*.jpg
 to_crop
 to_upload
 to_print
-
 .DS_Store
+.AppleDouble
 
 *.swp
 *.pyc
