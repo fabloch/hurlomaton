@@ -27,7 +27,9 @@ def is_after(ms_duration, some_timedelta):
     return some_timedelta >= timedelta(milliseconds=ms_duration)
 
 
-def format_time(time):
+def format_time(time, filename=False):
+    if filename:
+        return time.strftime("%H%M%S%f")
     return time.strftime("%H:%M:%S:%f")
 
 

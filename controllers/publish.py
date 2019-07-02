@@ -1,6 +1,9 @@
-from cups import Connection, IPPError
+import os
+import errno
+from cups import Connection
 from datetime import datetime
-from utils import CONST
+from PIL import Image
+from utils import CONST, format_time
 
 
 class PublishController(object):
@@ -30,10 +33,26 @@ class PublishController(object):
                 event=CONST["EVENT_NAME"], date=datetime.now().strftime("%Y%m%d_%H-%M")
             ),
             {},
-        )   
+        )
+        self.save_image()
 
     def check_print_done(self):
         if self.conn.getJobs().get(self.job_id, None) is not None:
             print("Still printing...")
             return False
         return True
+
+    def save_image(self):
+        filepath = "events/{event_name}/{date_time}.jpg".format(
+            event_name=CONST["EVENT_NAME"], date_time=format_time(datetime.now(), True)
+        )
+        """ create folder """
+        if not os.path.exists(os.path.dirname(filepath)):
+            try:
+                os.makedirs(os.path.dirname(filepath))
+            except OSError as exc:  # Guard against race condition
+                if exc.errno != errno.EEXIST:
+                    raise
+
+        image = Image.open("ramdisk/polaroid.jpg")
+        image.save(filepath)
