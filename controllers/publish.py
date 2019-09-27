@@ -16,24 +16,37 @@ class PublishController(object):
     def check_printer_status(self):
         is_selphy = []
         for printer in self.printers:
-            is_selphy.append(printer == CONST["PRINTER_NAME"])
+            is_selphy.append(printer == CONST["PRINTER_1"])
         if any(is_selphy):
-            print("printer {} is available.".format(CONST["PRINTER_NAME"]))
+            print("printer {} is available.".format(CONST["PRINTER_1"]))
             return True
         else:
-            print("Printer {} is missing.".format(CONST["PRINTER_NAME"]))
+            print("Printer {} is missing.".format(CONST["PRINTER_1"]))
             return False
 
-    def start_print(self):
-        self.conn.enablePrinter(CONST["PRINTER_NAME"])
-        self.job_id = self.conn.printFile(
-            CONST["PRINTER_NAME"],
-            "ramdisk/polaroid.jpg",
-            "{event}-{date}".format(
-                event=CONST["EVENT_NAME"], date=datetime.now().strftime("%Y%m%d_%H-%M")
-            ),
-            {},
-        )
+    def start_print(self, print_on_1):
+        if print_on_1:
+            self.conn.enablePrinter(CONST["PRINTER_1"])
+            self.job_id = self.conn.printFile(
+                CONST["PRINTER_1"],
+                "ramdisk/polaroid.jpg",
+                "{event}-{date}".format(
+                    event=CONST["EVENT_NAME"],
+                    date=datetime.now().strftime("%Y%m%d_%H-%M"),
+                ),
+                {},
+            )
+        else:
+            self.conn.enablePrinter(CONST["PRINTER_2"])
+            self.job_id = self.conn.printFile(
+                CONST["PRINTER_2"],
+                "ramdisk/polaroid.jpg",
+                "{event}-{date}".format(
+                    event=CONST["EVENT_NAME"],
+                    date=datetime.now().strftime("%Y%m%d_%H-%M"),
+                ),
+                {},
+            )
         self.save_image()
 
     def check_print_done(self):

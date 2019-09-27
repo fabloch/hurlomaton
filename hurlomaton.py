@@ -21,6 +21,7 @@ choice_start = False
 publish_start = False
 bug_mode = False
 tick = False
+print_on_1 = True
 
 UI = UIController()
 
@@ -92,11 +93,13 @@ if __name__ == "__main__":
         def show_publishing():
             global UI
             global publish_start, tick
+            global print_on_1
             reset()
             publish_start = set_now()
             tick = set_now()
             UI.show_publishing()
-            publish.start_print()
+            publish.start_print(print_on_1)
+            print_on_1 = not print_on_1
 
         def show_bug():
             global UI
