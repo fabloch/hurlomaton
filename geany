@@ -27,8 +27,7 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
-FILE_NAME_0=0;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fdev%2Fhurlomaton%2Ftout_quitter.sh;0;4
+current_page=-1
 
 [VTE]
 last_dir=/home/pi
