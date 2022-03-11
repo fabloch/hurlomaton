@@ -3,7 +3,7 @@ chardet==3.0.4
 idna==2.6
 olefile==0.44
 picamera==1.13
-Pillow==4.2.1
+Pillow==9.0.1
 pycups==1.9.74
 pyinotify==0.9.6
 requests==2.18.4
