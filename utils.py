@@ -1,6 +1,7 @@
-import RPi.GPIO as GPIO
 import threading
 from datetime import datetime, timedelta
+
+import RPi.GPIO as GPIO
 
 CONST = {
     "CHALLENGE_TIME_MS": 1500,
@@ -16,7 +17,7 @@ CONST = {
     "IDLE_DELAY_MS": 5000,
     "PRINTER_1": "Canon_SELPHY_CP1200",
     "PRINTER_2": "Canon_CP1000",
-    "EVENT_NAME": "ag2020",
+    "EVENT_NAME": "ag2022",
 }
 
 
