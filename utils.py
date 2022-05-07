@@ -17,7 +17,7 @@ CONST = {
     "IDLE_DELAY_MS": 5000,
     "PRINTER_1": "Canon_SELPHY_CP1200",
     "PRINTER_2": "Canon_CP1000",
-    "EVENT_NAME": "ag2022",
+    "EVENT_NAME": "tianok7ans",
 }
 
 
